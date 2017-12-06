@@ -5,3 +5,4 @@ routes
   .add('callback')
   .add('logout')
   .add('index')
+  .add('landing')
