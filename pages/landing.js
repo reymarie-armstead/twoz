@@ -11,12 +11,21 @@ import {
   Icon,
   Menu,
   Button,
-  Table
+  Table,
+  Responsive
 } from 'semantic-ui-react'
 import { Div, H1, H2, P, Span } from 'glamorous'
+import { Text } from 'axs'
 import store from 'services/store'
 import { Router } from 'routes'
 
+const divMenu = css({
+  height: '400px',
+  backgroundColor: '#fff',
+  '@media(min-width: 768px)': {
+    height: '135px'
+  }
+})
 const menuclass = css({
   '.ui': {
     backgroundColor: 'rgba(255, 255, 255, 1)',
@@ -30,6 +39,36 @@ const menuclass = css({
 })
 const menuitem = css({
   fontSize: '22px'
+})
+const introtxH1 = css({
+  fontSize: '39px',
+  '@media(min-width: 400px)': {
+    fontSize: '50px'
+  },
+  '@media(min-width: 768px)': {
+    fontSize: '70px'
+  },
+  '@media(min-width: 992px)': {
+    fontSize: '4.5vw'
+  },
+  '@media(min-width: 1597px)': {
+    fontSize: '70px'
+  }
+})
+const introtxH2 = css({
+  fontSize: '20px',
+  '@media(min-width: 400px)': {
+    fontSize: '26px'
+  },
+  '@media(min-width: 768px)': {
+    fontSize: '4vw'
+  },
+  '@media(min-width: 992px)': {
+    fontSize: '2.4vw'
+  },
+  '@media(min-width: 1597px)': {
+    fontSize: '40px'
+  }
 })
 const H1class = css({
   fontSize: '50px',
@@ -54,21 +93,96 @@ const tableClass = css({
     border: 'transparent!important',
     backgroundColor: 'rgba(255, 255, 255, .7)',
     fontSize: '18px',
-    borderRadius: '0'
+    borderRadius: '0',
+    padding: '0 !important',
+    marginTop: '14px !important'
+  }
+})
+const tableWidth = css({
+  '.ui': {
+    width: '573px',
+    marginRight: '10px'
+  }
+})
+const inquireWidth = css({
+  width: '300px',
+  backgroundColor: '#f47d0a',
+  color: '#fff',
+  paddingBottom: '5px',
+  paddingLeft: '0!important',
+  paddingRight: '0!important',
+  marginLeft: '14px',
+  '@media(min-width: 400px)': {
+    width: '380px',
+    marginTop: '30px'
+  },
+  '@media(min-width: 992px)': {
+    marginTop: '30px'
+  }
+})
+const inquireP1 = css({
+  backgroundColor: '#fff',
+  color: '#f47d0a',
+  fontSize: '22px',
+  padding: '10px 0 10px 15px',
+  marginBottom: '15px',
+  '@media(min-width: 400px)': {
+    fontSize: '25px'
+  }
+})
+
+const inquireH1 = css({
+  fontSize: '38px',
+  paddingLeft: '15px',
+  marginTop: '15px',
+  '@media(min-width: 400px)': {
+    fontSize: '45px'
+  }
+})
+const spacer = css({
+  padding: '0',
+  '@media(min-width: 992px)': {
+    padding: '155px'
+  },
+  '@media(min-width: 1548px)': {
+    padding: '255px'
+  }
+})
+const spacer2 = css({
+  padding: '0',
+  '@media(min-width: 768px)': {
+    padding: '35px'
   }
 })
 const bannerGrid = css({
   '.ui': {
     maxWidth: '1600px',
     margin: 'auto !important',
-    padding: '80px 0 40px',
-    backgroundImage: `url('/static/background-copy.png')`,
-    backgroundSize: 'initial',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: '75% 100%',
-    marginBottom: '-14px !important'
+    padding: '40px 0 40px',
+    '@media(min-width: 500px)': {
+      padding: '80px 0 40px',
+      backgroundSize: 'initial',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: '75% 100%',
+      marginBottom: '-14px !important',
+      backgroundImage: `url('/static/background-copy.png')`
+    }
   }
 })
+const chooseGrid = css({
+  padding: '100px 0 150px',
+  backgroundColor: '#f9f9f9',
+  color: '#686868',
+  fontSize: '16px',
+  margin: '0 auto',
+  '@media(min-width: 768px)': {
+    backgroundImage: "url('/static/bg-copy2.png')",
+    backgroundSize: 'inherit',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center 100%'
+  }
+})
+
 const imgLogo = css({
   '.ui': {
     display: 'inline-block!important',
@@ -79,16 +193,28 @@ const imgLogo = css({
 const getFreequote = css({
   '.ui': {
     width: '100%',
-    height: '94px',
-    fontSize: '30px',
+    height: '70px',
+    fontSize: '22px',
     backgroundColor: '#ec811a',
     color: '#fff',
     textTransform: 'uppercase',
     padding: '15px 30px',
     transition: 'all .5s',
+    '@media(min-width: 400px)': {
+      fontSize: '30px',
+      height: '94px'
+    },
     ':hover': {
       backgroundColor: 'rgba(3, 169, 244, 1)'
     }
+  }
+})
+const footerClass = css({
+  padding: '20px 10px',
+  '@media(min-width: 768px)': {
+    padding: '50px 15px',
+    maxWidth: '1600px',
+    margin: 'auto !important'
   }
 })
 
@@ -107,8 +233,8 @@ export default class Index extends Component {
       </Head>,
       <Div key="body">
         <Div backgroundImage="url('/static/bg.png')" backgroundSize="cover">
-          <Div height="135px" backgroundColor="#fff">
-            <Menu secondary className={`${menuclass}`}>
+          <Div className={`${divMenu}`}>
+            <Menu secondary stackable className={`${menuclass}`}>
               <Menu.Item>
                 <Image width="260" src="/static/ffc-logo.svg" />
               </Menu.Item>
@@ -134,10 +260,10 @@ export default class Index extends Component {
               </Menu.Menu>
             </Menu>
           </Div>
-          <Grid className={`${bannerGrid}`}>
-            <Grid.Column mobile={16} tablet={8} computer={6}>
-              <H1 fontSize="4vw">WE WILL BUILD YOUR FUTURE</H1>
-              <P fontSize="2.1vw">YOUR DREAM IT. WE BUILD IT!</P>
+          <Grid className={`${bannerGrid}`} centered>
+            <Grid.Column mobile={16} tablet={12} computer={6}>
+              <H1 className={`${introtxH1}`}>WE WILL BUILD YOUR FUTURE</H1>
+              <H2 className={`${introtxH2}`}>YOUR DREAM IT. WE BUILD IT!</H2>
               <Form>
                 <Form.Field>
                   <input placeholder="Name" className={`${inputClass}`} />
@@ -154,11 +280,12 @@ export default class Index extends Component {
                 </Button>
               </Form>
             </Grid.Column>
-            <Grid.Column mobile={16} tablet={8} computer={10}>
-              <Div paddingTop="560px">
+            <Grid.Column mobile={16} tablet={12} computer={10}>
+              <Div>
+                <Div className={`${spacer}`} />
                 <Grid>
-                  <Grid.Column mobile={16} tablet={16} computer={10}>
-                    <Table className={`${tableClass}`}>
+                  <Responsive className={`${tableWidth}`} minWidth={768}>
+                    <Table unstackable className={`${tableClass}`}>
                       <Table.Header>
                         <Table.Row>
                           <Table.Cell colspan="3">
@@ -202,30 +329,16 @@ export default class Index extends Component {
                         </Table.Row>
                       </Table.Body>
                     </Table>
-                  </Grid.Column>
-                  <Grid.Column mobile={16} tablet={16} computer={6}>
-                    <Div
-                      backgroundColor="#f47d0a"
-                      color="#fff"
-                      paddingBottom="5px"
-                    >
-                      <P
-                        backgroundColor="#fff"
-                        color="#f47d0a"
-                        fontSize="25px"
-                        padding="10px 0 10px 15px"
-                        marginBottom="15px"
-                      >
-                        INQUIRE TO GET STARTED!
-                      </P>
+                  </Responsive>
+                  <Grid>
+                    <Div className={`${inquireWidth}`}>
+                      <P className={`${inquireP1}`}>INQUIRE TO GET STARTED!</P>
                       <P fontSize="25px" paddingLeft="15px" marginBottom="15px">
                         Call us now
                       </P>
-                      <H1 fontSize="45px" paddingLeft="15px" marginTop="15px">
-                        (847) 252-5126
-                      </H1>
+                      <H1 className={`${inquireH1}`}>(847) 252-5126</H1>
                     </Div>
-                  </Grid.Column>
+                  </Grid>
                 </Grid>
               </Div>
             </Grid.Column>
@@ -240,7 +353,9 @@ export default class Index extends Component {
               computer={10}
               verticalAlign="middle"
             >
-              <H1 className={`${H1class}`}>OUR SERVICES</H1>
+              <Text is="h1" f={[2, null, 1, 1]}>
+                OUR SERVICES
+              </Text>
               <P>
                 This is a sample text, this will be replaced with an actual
                 content. This is a sample text, this will be replaced with an
@@ -462,17 +577,7 @@ export default class Index extends Component {
           </Grid>
         </Div>
 
-        <Div
-          padding="100px 0 150px"
-          margin="0 auto"
-          backgroundImage="url('/static/bg-copy2.png')"
-          backgroundSize="inherit"
-          backgroundRepeat="no-repeat"
-          backgroundPosition="center 100%"
-          backgroundColor="#f9f9f9"
-          color="#686868"
-          fontSize="16px"
-        >
+        <Div className={`${chooseGrid}`}>
           <Grid container centered>
             <Grid.Column
               mobile={16}
@@ -480,7 +585,9 @@ export default class Index extends Component {
               computer={10}
               textAlign="center"
             >
-              <H1 className={`${H1class}`}>WHY CHOOSE US?</H1>
+              <Text is="h1" f={[2, null, 1, 1]}>
+                WHY CHOOSE US?
+              </Text>
               <P>
                 This is a sample text, this will be replaced with an actual
                 content. This is a sample text, this will be replaced with an
@@ -489,34 +596,57 @@ export default class Index extends Component {
             </Grid.Column>
           </Grid>
           <Grid container centered>
-            <Grid.Column floated="left" textAlign="center" width={4}>
-              <Div marginTop="100px">
-                <Image centered src="/static/engineer.png" />
-                <Div>
-                  <h3 className={`${h3Class}`}>Title Here</h3>
-                  <p>
-                    This is a sample text, this will be replaced with an actual
-                    content. This is a sample text.
-                  </p>
+            <Grid.Row>
+              <Grid.Column
+                floated="left"
+                textAlign="center"
+                mobile={16}
+                tablet={4}
+                computer={4}
+              >
+                <Div className={`${spacer2}`} />
+                <Div margin="30px auto 0" maxWidth="300px">
+                  <Image centered src="/static/engineer.png" />
+                  <Div>
+                    <h3 className={`${h3Class}`}>Title Here</h3>
+                    <p>
+                      This is a sample text, this will be replaced with an
+                      actual content. This is a sample text.
+                    </p>
+                  </Div>
                 </Div>
-              </Div>
-            </Grid.Column>
-            <Grid.Column floated="right" textAlign="center" width={4}>
-              <Div marginTop="100px">
-                <Image centered src="/static/tap.png" />
-                <Div>
-                  <h3 className={`${h3Class}`}>Title Here</h3>
-                  <p>
-                    This is a sample text, this will be replaced with an actual
-                    content. This is a sample text.
-                  </p>
+              </Grid.Column>
+              <Grid.Column
+                floated="right"
+                textAlign="center"
+                mobile={16}
+                tablet={4}
+                computer={4}
+              >
+                <Div className={`${spacer2}`} />
+                <Div margin="30px auto 0" maxWidth="300px">
+                  <Image centered src="/static/tap.png" />
+                  <Div>
+                    <h3 className={`${h3Class}`}>Title Here</h3>
+                    <p>
+                      This is a sample text, this will be replaced with an
+                      actual content. This is a sample text.
+                    </p>
+                  </Div>
                 </Div>
-              </Div>
-            </Grid.Column>
+              </Grid.Column>
+            </Grid.Row>
 
             <Grid.Row>
-              <Grid.Column floated="left" textAlign="center" width={4}>
-                <Div marginTop="100px">
+              <Grid.Column
+                floated="left"
+                textAlign="center"
+                mobile={16}
+                tablet={4}
+                computer={4}
+              >
+                <Div className={`${spacer2}`} />
+                <Div margin="30px auto 0" maxWidth="300px">
                   <Image centered src="/static/light-bulb.png" />
                   <Div>
                     <h3 className={`${h3Class}`}>Title Here</h3>
@@ -527,8 +657,15 @@ export default class Index extends Component {
                   </Div>
                 </Div>
               </Grid.Column>
-              <Grid.Column floated="right" textAlign="center" width={4}>
-                <Div marginTop="100px">
+              <Grid.Column
+                floated="right"
+                textAlign="center"
+                mobile={16}
+                tablet={4}
+                computer={4}
+              >
+                <Div className={`${spacer2}`} />
+                <Div margin="30px auto 0" maxWidth="300px">
                   <Image centered src="/static/paint-roller.png" />
                   <Div>
                     <h3 className={`${h3Class}`}>Title Here</h3>
@@ -547,8 +684,12 @@ export default class Index extends Component {
           <Grid container>
             <Grid.Column centered textAlign="center">
               <Div padding="80px 0 70px">
-                <H1 fontSize="50px">Call Family First Construction today!</H1>
-                <H2 fontSize="36px">(847) 252-5126</H2>
+                <Text is="h1" f={[2, 1, 1]}>
+                  Call Family First Construction today!
+                </Text>
+                <Text is="h2" f={[3, 2, 2]}>
+                  (847) 252-5126
+                </Text>
               </Div>
             </Grid.Column>
           </Grid>
@@ -557,7 +698,9 @@ export default class Index extends Component {
         <Div padding="100px 0" backgroundColor="#f9f9f9">
           <Grid centered>
             <Div marginBottom="20px">
-              <H1 className={`${H1class}`}>OUR ACCREDITATIONS</H1>
+              <Text is="h1" f={[2, null, 1, 1]}>
+                OUR ACCREDITATIONS
+              </Text>
             </Div>
             <Grid.Row vertical>
               <Grid.Column centered textAlign="center">
@@ -582,7 +725,9 @@ export default class Index extends Component {
               computer={10}
               textAlign="center"
             >
-              <H1 className={`${H1class}`}>GALLERY</H1>
+              <Text is="h1" f={[2, null, 1, 1]}>
+                GALLERY
+              </Text>
               <P marginBottom="50px !important">
                 This is a sample text, this will be replaced with an actual
                 content. This is a sample text, this will be replaced with an
@@ -625,15 +770,18 @@ export default class Index extends Component {
         <Div backgroundColor="#1d273b" padding="100px 0">
           <Grid container centered>
             <Grid.Column textAlign="center">
-              <P fontSize="30px" color="#fff">
-                Home damaged by fire, water, or mold?
-              </P>
-              <H1 color="#528bfc" fontSize="50px">
+              <Text is="h2" f={[4, null, 3, 2]}>
+                <Span color="#fff">Home damaged by fire, water, or mold?</Span>
+              </Text>
+              <Text is="h1" f={[3, null, 1, 1]}>
                 <Span color="#fff" fontWeight="100">
                   VISIT
                 </Span>{' '}
-                FAMILY FIRST RESTORATION.COM
-              </H1>
+                <Span color="#528bfc" fontWeight="700">
+                  {' '}
+                  FAMILY FIRST RESTORATION.COM
+                </Span>
+              </Text>
               <P color="#fff" fontSize="16px">
                 We are experts in water damage repair, mold removal, sewage
                 clean up, and fire damage restoration.
@@ -642,32 +790,61 @@ export default class Index extends Component {
           </Grid>
         </Div>
 
-        <Div maxWidth="1600px" margin="auto !important" padding="50px 15px">
-          <Grid columns="equal">
-            <Grid.Column>
-              <Div>
-                <p>
-                  Family First Construction Copyright &copy; 2017.All Rights
-                  Reserved.
-                </p>
-              </Div>
-            </Grid.Column>
-            <Grid.Column textAlign="center">
-              <Div>
-                <p horizontal>
-                  Empowered by{' '}
-                  <Image src="/static/a-logo.png" width="20" spaced /> Armstead
-                  Inc.
-                </p>
-              </Div>
-            </Grid.Column>
-            <Grid.Column textAlign="right">
-              <Div>
-                <Icon name="facebook" color="blue" size="large" />
-                <Icon name="twitter" color="blue" size="large" />
-                <Icon name="instagram" color="blue" size="large" />
-              </Div>
-            </Grid.Column>
+        <Div className={`${footerClass}`}>
+          <Grid>
+            <Grid.Row columns={3} only="tablet computer">
+              <Grid.Column>
+                <Div>
+                  <p>
+                    Family First Construction Copyright &copy; 2017.All Rights
+                    Reserved.
+                  </p>
+                </Div>
+              </Grid.Column>
+              <Grid.Column textAlign="center">
+                <Div>
+                  <p horizontal>
+                    Empowered by{' '}
+                    <Image src="/static/a-logo.png" width="20" spaced />{' '}
+                    Armstead Inc.
+                  </p>
+                </Div>
+              </Grid.Column>
+              <Grid.Column textAlign="right">
+                <Div>
+                  <Icon name="facebook" color="blue" size="large" />
+                  <Icon name="twitter" color="blue" size="large" />
+                  <Icon name="instagram" color="blue" size="large" />
+                </Div>
+              </Grid.Column>
+            </Grid.Row>
+
+            <Grid.Row only="mobile">
+              <Grid.Column width="16" textAlign="center">
+                <Div>
+                  <p>
+                    Family First Construction Copyright &copy; 2017.All Rights
+                    Reserved.
+                  </p>
+                </Div>
+              </Grid.Column>
+              <Grid.Column width="16" textAlign="center">
+                <Div marginTop="10px">
+                  <p horizontal>
+                    Empowered by{' '}
+                    <Image src="/static/a-logo.png" width="20" spaced />{' '}
+                    Armstead Inc.
+                  </p>
+                </Div>
+              </Grid.Column>
+              <Grid.Column width="16" textAlign="center">
+                <Div marginTop="5px">
+                  <Icon name="facebook" color="blue" size="large" />
+                  <Icon name="twitter" color="blue" size="large" />
+                  <Icon name="instagram" color="blue" size="large" />
+                </Div>
+              </Grid.Column>
+            </Grid.Row>
           </Grid>
         </Div>
       </Div>

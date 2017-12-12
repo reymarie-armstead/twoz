@@ -341,6 +341,14 @@ axobject-query@^0.1.0:
   dependencies:
     ast-types-flow "0.0.7"
 
+axs@^2.0.0-1:
+  version "2.0.0-1"
+  resolved "https://registry.yarnpkg.com/axs/-/axs-2.0.0-1.tgz#731769c4bacaf5cc5eda8e9c883270268a900c75"
+  dependencies:
+    classnames "^2.2.5"
+    glamor "^2.20.25"
+    prop-types "^15.5.10"
+
 babel-code-frame@^6.26.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-code-frame/-/babel-code-frame-6.26.0.tgz#63fd43f7dc1e3bb7ce35947db8fe369a3f58c74b"
@@ -2533,7 +2541,7 @@ github@~0.1.10:
   version "0.1.16"
   resolved "https://registry.yarnpkg.com/github/-/github-0.1.16.tgz#895d2a85b0feb7980d89ac0ce4f44dcaa03f17b5"
 
-glamor@^2.20.40:
+glamor@^2.20.25, glamor@^2.20.40:
   version "2.20.40"
   resolved "https://registry.yarnpkg.com/glamor/-/glamor-2.20.40.tgz#f606660357b7cf18dface731ad1a2cfa93817f05"
   dependencies:
