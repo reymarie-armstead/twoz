@@ -31,14 +31,35 @@ const menuclass = css({
     backgroundColor: 'rgba(255, 255, 255, 1)',
     color: '#000',
     maxWidth: '1600px',
-    margin: 'auto !important',
+    margin: 'auto!important',
     height: '135px',
     border: '0',
     boxShadow: '0 1px 2px 0 rgba(34,36,38,0)'
   }
 })
 const menuitem = css({
-  fontSize: '22px'
+  fontSize: '22px',
+  '@media(min-width: 768px)': {
+    fontSize: '14px'
+  },
+  '@media(min-width: 1080px)': {
+    fontSize: '22px'
+  }
+})
+const menuicon = css({
+  width: '30px',
+  '@media(min-width: 768px)': {
+    width: '24px'
+  }
+})
+const logo = css({
+  width: '260px',
+  '@media(min-width: 768px)': {
+    width: '170px'
+  },
+  '@media(min-width: 1080px)': {
+    width: '260px'
+  }
 })
 const introtxH1 = css({
   fontSize: '39px',
@@ -70,19 +91,22 @@ const introtxH2 = css({
     fontSize: '40px'
   }
 })
-const H1class = css({
-  fontSize: '50px',
-  color: '#242424'
+const h1Class = css({
+  fontSize: '34px',
+  color: '#242424',
+  '@media(min-width: 480px)': {
+    fontSize: '50px'
+  }
 })
 const aClass = css({
   color: '#f47d0a'
 })
 const h3Class = css({
-  marginTop: '20px !important',
+  marginTop: '20px!important',
   fontSize: '20px'
 })
 const inputClass = css({
-  height: '65px !important',
+  height: '65px!important',
   fontSize: '18px'
 })
 const cellClass = css({
@@ -94,8 +118,8 @@ const tableClass = css({
     backgroundColor: 'rgba(255, 255, 255, .7)',
     fontSize: '18px',
     borderRadius: '0',
-    padding: '0 !important',
-    marginTop: '14px !important'
+    padding: '0!important',
+    marginTop: '14px!important'
   }
 })
 const tableWidth = css({
@@ -157,14 +181,14 @@ const spacer2 = css({
 const bannerGrid = css({
   '.ui': {
     maxWidth: '1600px',
-    margin: 'auto !important',
+    margin: 'auto!important',
     padding: '40px 0 40px',
     '@media(min-width: 500px)': {
       padding: '80px 0 40px',
       backgroundSize: 'initial',
       backgroundRepeat: 'no-repeat',
       backgroundPosition: '75% 100%',
-      marginBottom: '-14px !important',
+      marginBottom: '-14px!important',
       backgroundImage: `url('/static/background-copy.png')`
     }
   }
@@ -186,7 +210,10 @@ const chooseGrid = css({
 const imgLogo = css({
   '.ui': {
     display: 'inline-block!important',
-    margin: '15px 30px !important'
+    margin: '15px 15px!important',
+    '@media(min-width: 768px)': {
+      margin: '15px 30px!important'
+    }
   }
 })
 
@@ -214,7 +241,7 @@ const footerClass = css({
   '@media(min-width: 768px)': {
     padding: '50px 15px',
     maxWidth: '1600px',
-    margin: 'auto !important'
+    margin: 'auto!important'
   }
 })
 
@@ -236,23 +263,35 @@ export default class Index extends Component {
           <Div className={`${divMenu}`}>
             <Menu secondary stackable className={`${menuclass}`}>
               <Menu.Item>
-                <Image width="260" src="/static/ffc-logo.svg" />
+                <Image className={`${logo}`} src="/static/ffc-logo.svg" />
               </Menu.Item>
               <Menu.Menu position="right">
                 <Menu.Item onClick={this.handleItemClick}>
-                  <Image src="/static/place.png" width="30" spaced />
+                  <Image
+                    src="/static/place.png"
+                    className={`${menuicon}`}
+                    spaced
+                  />
                   <p className={`${menuitem}`}>
                     <strong>227 Marlon Street</strong> <br />Columbia, SC 29201
                   </p>
                 </Menu.Item>
                 <Menu.Item onClick={this.handleItemClick}>
-                  <Image src="/static/time.png" width="30" spaced />
+                  <Image
+                    src="/static/time.png"
+                    className={`${menuicon}`}
+                    spaced
+                  />
                   <p className={`${menuitem}`}>
                     <strong>Mon-Sat 7AM-5PM</strong> <br />Sunday CLOSED
                   </p>
                 </Menu.Item>
                 <Menu.Item onClick={this.handleItemClick}>
-                  <Image src="/static/speech.png" width="30" spaced />
+                  <Image
+                    src="/static/speech.png"
+                    className={`${menuicon}`}
+                    spaced
+                  />
                   <p className={`${menuitem}`}>
                     <strong>(847) 252-5126</strong> <br />info@ffc.com
                   </p>
@@ -263,7 +302,7 @@ export default class Index extends Component {
           <Grid className={`${bannerGrid}`} centered>
             <Grid.Column mobile={16} tablet={12} computer={6}>
               <H1 className={`${introtxH1}`}>WE WILL BUILD YOUR FUTURE</H1>
-              <H2 className={`${introtxH2}`}>YOUR DREAM IT. WE BUILD IT!</H2>
+              <H2 className={`${introtxH2}`}>YOU DREAM IT. WE BUILD IT!</H2>
               <Form>
                 <Form.Field>
                   <input placeholder="Name" className={`${inputClass}`} />
@@ -353,9 +392,7 @@ export default class Index extends Component {
               computer={10}
               verticalAlign="middle"
             >
-              <Text is="h1" f={[2, null, 1, 1]}>
-                OUR SERVICES
-              </Text>
+              <H1 className={`${h1Class}`}>OUR SERVICES</H1>
               <P>
                 This is a sample text, this will be replaced with an actual
                 content. This is a sample text, this will be replaced with an
@@ -374,18 +411,16 @@ export default class Index extends Component {
             >
               <Div marginTop="50px">
                 <Image centered src="/static/design-1.jpg" />
-                <Div>
-                  <h3 className={`${h3Class}`}>Kitchen</h3>
-                  <p>
-                    This is a sample text, this will be replaced with an actual
-                    content. This is a sample text.
-                  </p>
-                  <p>
-                    <a className={`${aClass}`} href="">
-                      LEARN MORE
-                    </a>
-                  </p>
-                </Div>
+                <h3 className={`${h3Class}`}>Kitchen</h3>
+                <p>
+                  This is a sample text, this will be replaced with an actual
+                  content. This is a sample text.
+                </p>
+                <p>
+                  <a className={`${aClass}`} href="">
+                    LEARN MORE
+                  </a>
+                </p>
               </Div>
             </Grid.Column>
             <Grid.Column
@@ -397,18 +432,16 @@ export default class Index extends Component {
             >
               <Div marginTop="50px">
                 <Image centered src="/static/design-2.jpg" />
-                <Div>
-                  <h3 className={`${h3Class}`}>Bathroom</h3>
-                  <p>
-                    This is a sample text, this will be replaced with an actual
-                    content. This is a sample text.
-                  </p>
-                  <p>
-                    <a className={`${aClass}`} href="">
-                      LEARN MORE
-                    </a>
-                  </p>
-                </Div>
+                <h3 className={`${h3Class}`}>Bathroom</h3>
+                <p>
+                  This is a sample text, this will be replaced with an actual
+                  content. This is a sample text.
+                </p>
+                <p>
+                  <a className={`${aClass}`} href="">
+                    LEARN MORE
+                  </a>
+                </p>
               </Div>
             </Grid.Column>
             <Grid.Column
@@ -420,18 +453,16 @@ export default class Index extends Component {
             >
               <Div marginTop="50px">
                 <Image centered src="/static/design-3.jpg" />
-                <Div>
-                  <h3 className={`${h3Class}`}>Basements</h3>
-                  <p>
-                    This is a sample text, this will be replaced with an actual
-                    content. This is a sample text.
-                  </p>
-                  <p>
-                    <a className={`${aClass}`} href="">
-                      LEARN MORE
-                    </a>
-                  </p>
-                </Div>
+                <h3 className={`${h3Class}`}>Basements</h3>
+                <p>
+                  This is a sample text, this will be replaced with an actual
+                  content. This is a sample text.
+                </p>
+                <p>
+                  <a className={`${aClass}`} href="">
+                    LEARN MORE
+                  </a>
+                </p>
               </Div>
             </Grid.Column>
 
@@ -444,18 +475,16 @@ export default class Index extends Component {
             >
               <Div marginTop="50px">
                 <Image centered src="/static/design-4.jpg" />
-                <Div>
-                  <h3 className={`${h3Class}`}>Hardwood</h3>
-                  <p>
-                    This is a sample text, this will be replaced with an actual
-                    content. This is a sample text.
-                  </p>
-                  <p>
-                    <a className={`${aClass}`} href="">
-                      LEARN MORE
-                    </a>
-                  </p>
-                </Div>
+                <h3 className={`${h3Class}`}>Hardwood</h3>
+                <p>
+                  This is a sample text, this will be replaced with an actual
+                  content. This is a sample text.
+                </p>
+                <p>
+                  <a className={`${aClass}`} href="">
+                    LEARN MORE
+                  </a>
+                </p>
               </Div>
             </Grid.Column>
             <Grid.Column
@@ -467,18 +496,16 @@ export default class Index extends Component {
             >
               <Div marginTop="50px">
                 <Image centered src="/static/design-5.jpg" />
-                <Div>
-                  <h3 className={`${h3Class}`}>Floor</h3>
-                  <p>
-                    This is a sample text, this will be replaced with an actual
-                    content. This is a sample text.
-                  </p>
-                  <p>
-                    <a className={`${aClass}`} href="">
-                      LEARN MORE
-                    </a>
-                  </p>
-                </Div>
+                <h3 className={`${h3Class}`}>Floor</h3>
+                <p>
+                  This is a sample text, this will be replaced with an actual
+                  content. This is a sample text.
+                </p>
+                <p>
+                  <a className={`${aClass}`} href="">
+                    LEARN MORE
+                  </a>
+                </p>
               </Div>
             </Grid.Column>
             <Grid.Column
@@ -490,18 +517,16 @@ export default class Index extends Component {
             >
               <Div marginTop="50px">
                 <Image centered src="/static/design-6.jpg" />
-                <Div>
-                  <h3 className={`${h3Class}`}>Carpet</h3>
-                  <p>
-                    This is a sample text, this will be replaced with an actual
-                    content. This is a sample text.
-                  </p>
-                  <p>
-                    <a className={`${aClass}`} href="">
-                      LEARN MORE
-                    </a>
-                  </p>
-                </Div>
+                <h3 className={`${h3Class}`}>Carpet</h3>
+                <p>
+                  This is a sample text, this will be replaced with an actual
+                  content. This is a sample text.
+                </p>
+                <p>
+                  <a className={`${aClass}`} href="">
+                    LEARN MORE
+                  </a>
+                </p>
               </Div>
             </Grid.Column>
 
@@ -514,18 +539,16 @@ export default class Index extends Component {
             >
               <Div marginTop="50px">
                 <Image centered src="/static/design-7.jpg" />
-                <Div>
-                  <h3 className={`${h3Class}`}>Tiles Sales & Installation</h3>
-                  <p>
-                    This is a sample text, this will be replaced with an actual
-                    content. This is a sample text.
-                  </p>
-                  <p>
-                    <a className={`${aClass}`} href="">
-                      LEARN MORE
-                    </a>
-                  </p>
-                </Div>
+                <h3 className={`${h3Class}`}>Tiles Sales & Installation</h3>
+                <p>
+                  This is a sample text, this will be replaced with an actual
+                  content. This is a sample text.
+                </p>
+                <p>
+                  <a className={`${aClass}`} href="">
+                    LEARN MORE
+                  </a>
+                </p>
               </Div>
             </Grid.Column>
             <Grid.Column
@@ -537,18 +560,16 @@ export default class Index extends Component {
             >
               <Div marginTop="50px">
                 <Image centered src="/static/design-8.jpg" />
-                <Div>
-                  <h3 className={`${h3Class}`}>Concrete Repairs</h3>
-                  <p>
-                    This is a sample text, this will be replaced with an actual
-                    content. This is a sample text.
-                  </p>
-                  <p>
-                    <a className={`${aClass}`} href="">
-                      LEARN MORE
-                    </a>
-                  </p>
-                </Div>
+                <h3 className={`${h3Class}`}>Concrete Repairs</h3>
+                <p>
+                  This is a sample text, this will be replaced with an actual
+                  content. This is a sample text.
+                </p>
+                <p>
+                  <a className={`${aClass}`} href="">
+                    LEARN MORE
+                  </a>
+                </p>
               </Div>
             </Grid.Column>
             <Grid.Column
@@ -560,18 +581,16 @@ export default class Index extends Component {
             >
               <Div marginTop="50px">
                 <Image centered src="/static/design-9.jpg" />
-                <Div>
-                  <h3 className={`${h3Class}`}>Structural Repairs</h3>
-                  <p>
-                    This is a sample text, this will be replaced with an actual
-                    content. This is a sample text.
-                  </p>
-                  <p>
-                    <a className={`${aClass}`} href="">
-                      LEARN MORE
-                    </a>
-                  </p>
-                </Div>
+                <h3 className={`${h3Class}`}>Structural Repairs</h3>
+                <p>
+                  This is a sample text, this will be replaced with an actual
+                  content. This is a sample text.
+                </p>
+                <p>
+                  <a className={`${aClass}`} href="">
+                    LEARN MORE
+                  </a>
+                </p>
               </Div>
             </Grid.Column>
           </Grid>
@@ -585,9 +604,7 @@ export default class Index extends Component {
               computer={10}
               textAlign="center"
             >
-              <Text is="h1" f={[2, null, 1, 1]}>
-                WHY CHOOSE US?
-              </Text>
+              <H1 className={`${h1Class}`}>WHY CHOOSE US?</H1>
               <P>
                 This is a sample text, this will be replaced with an actual
                 content. This is a sample text, this will be replaced with an
@@ -607,13 +624,11 @@ export default class Index extends Component {
                 <Div className={`${spacer2}`} />
                 <Div margin="30px auto 0" maxWidth="300px">
                   <Image centered src="/static/engineer.png" />
-                  <Div>
-                    <h3 className={`${h3Class}`}>Title Here</h3>
-                    <p>
-                      This is a sample text, this will be replaced with an
-                      actual content. This is a sample text.
-                    </p>
-                  </Div>
+                  <h3 className={`${h3Class}`}>Title Here</h3>
+                  <p>
+                    This is a sample text, this will be replaced with an actual
+                    content. This is a sample text.
+                  </p>
                 </Div>
               </Grid.Column>
               <Grid.Column
@@ -626,13 +641,11 @@ export default class Index extends Component {
                 <Div className={`${spacer2}`} />
                 <Div margin="30px auto 0" maxWidth="300px">
                   <Image centered src="/static/tap.png" />
-                  <Div>
-                    <h3 className={`${h3Class}`}>Title Here</h3>
-                    <p>
-                      This is a sample text, this will be replaced with an
-                      actual content. This is a sample text.
-                    </p>
-                  </Div>
+                  <h3 className={`${h3Class}`}>Title Here</h3>
+                  <p>
+                    This is a sample text, this will be replaced with an actual
+                    content. This is a sample text.
+                  </p>
                 </Div>
               </Grid.Column>
             </Grid.Row>
@@ -648,13 +661,11 @@ export default class Index extends Component {
                 <Div className={`${spacer2}`} />
                 <Div margin="30px auto 0" maxWidth="300px">
                   <Image centered src="/static/light-bulb.png" />
-                  <Div>
-                    <h3 className={`${h3Class}`}>Title Here</h3>
-                    <p>
-                      This is a sample text, this will be replaced with an
-                      actual content. This is a sample text.
-                    </p>
-                  </Div>
+                  <h3 className={`${h3Class}`}>Title Here</h3>
+                  <p>
+                    This is a sample text, this will be replaced with an actual
+                    content. This is a sample text.
+                  </p>
                 </Div>
               </Grid.Column>
               <Grid.Column
@@ -667,13 +678,11 @@ export default class Index extends Component {
                 <Div className={`${spacer2}`} />
                 <Div margin="30px auto 0" maxWidth="300px">
                   <Image centered src="/static/paint-roller.png" />
-                  <Div>
-                    <h3 className={`${h3Class}`}>Title Here</h3>
-                    <p>
-                      This is a sample text, this will be replaced with an
-                      actual content. This is a sample text.
-                    </p>
-                  </Div>
+                  <h3 className={`${h3Class}`}>Title Here</h3>
+                  <p>
+                    This is a sample text, this will be replaced with an actual
+                    content. This is a sample text.
+                  </p>
                 </Div>
               </Grid.Column>
             </Grid.Row>
@@ -695,14 +704,12 @@ export default class Index extends Component {
           </Grid>
         </Div>
 
-        <Div padding="100px 0" backgroundColor="#f9f9f9">
+        <Div padding="100px 10px" backgroundColor="#f9f9f9">
           <Grid centered>
             <Div marginBottom="20px">
-              <Text is="h1" f={[2, null, 1, 1]}>
-                OUR ACCREDITATIONS
-              </Text>
+              <H1 className={`${h1Class}`}>OUR ACCREDITATIONS</H1>
             </Div>
-            <Grid.Row vertical>
+            <Grid.Row>
               <Grid.Column centered textAlign="center">
                 <Image.Group>
                   <Image src="/static/otc-logo.png" className={`${imgLogo}`} />
@@ -725,10 +732,8 @@ export default class Index extends Component {
               computer={10}
               textAlign="center"
             >
-              <Text is="h1" f={[2, null, 1, 1]}>
-                GALLERY
-              </Text>
-              <P marginBottom="50px !important">
+              <H1 className={`${h1Class}`}>GALLERY</H1>
+              <P marginBottom="50px!important">
                 This is a sample text, this will be replaced with an actual
                 content. This is a sample text, this will be replaced with an
                 actual content. This will be replaced with an actual content.
@@ -794,39 +799,31 @@ export default class Index extends Component {
           <Grid>
             <Grid.Row columns={3} only="tablet computer">
               <Grid.Column>
-                <Div>
-                  <p>
-                    Family First Construction Copyright &copy; 2017.All Rights
-                    Reserved.
-                  </p>
-                </Div>
+                <p>
+                  Family First Construction Copyright &copy; 2017.All Rights
+                  Reserved.
+                </p>
               </Grid.Column>
               <Grid.Column textAlign="center">
-                <Div>
-                  <p horizontal>
-                    Empowered by{' '}
-                    <Image src="/static/a-logo.png" width="20" spaced />{' '}
-                    Armstead Inc.
-                  </p>
-                </Div>
+                <p horizontal>
+                  Empowered by{' '}
+                  <Image src="/static/a-logo.png" width="20" spaced /> Armstead
+                  Inc.
+                </p>
               </Grid.Column>
               <Grid.Column textAlign="right">
-                <Div>
-                  <Icon name="facebook" color="blue" size="large" />
-                  <Icon name="twitter" color="blue" size="large" />
-                  <Icon name="instagram" color="blue" size="large" />
-                </Div>
+                <Icon name="facebook" color="blue" size="large" />
+                <Icon name="twitter" color="blue" size="large" />
+                <Icon name="instagram" color="blue" size="large" />
               </Grid.Column>
             </Grid.Row>
 
             <Grid.Row only="mobile">
               <Grid.Column width="16" textAlign="center">
-                <Div>
-                  <p>
-                    Family First Construction Copyright &copy; 2017.All Rights
-                    Reserved.
-                  </p>
-                </Div>
+                <p>
+                  Family First Construction Copyright &copy; 2017.All Rights
+                  Reserved.
+                </p>
               </Grid.Column>
               <Grid.Column width="16" textAlign="center">
                 <Div marginTop="10px">
