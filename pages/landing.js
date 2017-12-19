@@ -134,7 +134,7 @@ const aWhite = css({
   color: '#fff'
 })
 const aBlack = css({
-  color: '#000'
+  color: 'rgba(0,0,0,.87)'
 })
 const aClass = css({
   color: '#f47d0a'
@@ -216,10 +216,10 @@ const inquireH1 = css({
 const spacer = css({
   padding: '0',
   '@media(min-width: 992px)': {
-    padding: '155px'
+    padding: '165px'
   },
   '@media(min-width: 1200px)': {
-    padding: '264px'
+    padding: '261px'
   }
 })
 const spacer2 = css({
@@ -841,7 +841,7 @@ export default class Index extends Component {
               </Grid.Column>
               <Grid.Column textAlign="left" computer={5}>
                 <p horizontal>
-                  <a href="https://armstead.io">
+                  <a href="https://armstead.io" className={`${aBlack}`}>
                     Empowered by{' '}
                     <Image src="/static/a-logo.png" width="20" spaced />{' '}
                     Armstead Inc.
@@ -871,7 +871,7 @@ export default class Index extends Component {
               <Grid.Column width="16" textAlign="center">
                 <Div marginTop="10px">
                   <p horizontal>
-                    <a href="https://armstead.io">
+                    <a href="https://armstead.io" className={`${aBlack}`}>
                       Empowered by{' '}
                       <Image src="/static/a-logo.png" width="20" spaced />{' '}
                       Armstead Inc.
