@@ -32,6 +32,10 @@ export default class MyDocument extends Document {
           />
           <link
             rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Oswald:400,600,700"
+          />
+          <link
+            rel="stylesheet"
             href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css"
           />
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
