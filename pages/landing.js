@@ -19,6 +19,8 @@ import { Text } from 'axs'
 import store from 'services/store'
 import { Router } from 'routes'
 
+css.global('*', { fontFamily: `'Open Sans', 'Oswald', sans-serif` })
+
 const divMenu = css({
   height: '200px',
   backgroundColor: '#fff',
@@ -81,7 +83,9 @@ const logo = css({
   }
 })
 const introtxH1 = css({
+  fontFamily: `'Oswald', sans-serif`,
   fontSize: '39px',
+  color: '#242424',
   '@media(min-width: 400px)': {
     fontSize: '50px'
   },
@@ -96,6 +100,9 @@ const introtxH1 = css({
   }
 })
 const introtxH2 = css({
+  fontFamily: `'Oswald', sans-serif`,
+  fontWeight: '600',
+  color: '#555555',
   fontSize: '20px',
   '@media(min-width: 400px)': {
     fontSize: '26px'
@@ -112,13 +119,18 @@ const introtxH2 = css({
 })
 
 const h1Class = css({
+  fontFamily: `'Oswald', sans-serif`,
+  fontWeight: '400',
   fontSize: '34px',
   color: '#242424',
   '@media(min-width: 480px)': {
     fontSize: '50px'
   }
 })
+
 const aWhite = css({
+  fontFamily: `'Oswald', sans-serif`,
+  fontWeight: '600',
   color: '#fff'
 })
 const aBlack = css({
@@ -128,6 +140,8 @@ const aClass = css({
   color: '#f47d0a'
 })
 const h3Class = css({
+  fontFamily: `'Oswald', sans-serif`,
+  fontWeight: '400',
   marginTop: '20px!important',
   fontSize: '20px'
 })
@@ -140,6 +154,7 @@ const cellClass = css({
 })
 const tableClass = css({
   '.ui': {
+    fontFamily: `'Oswald', sans-serif`,
     width: '94vw',
     border: 'transparent!important',
     backgroundColor: 'rgba(255, 255, 255, .7)',
@@ -695,7 +710,10 @@ export default class Index extends Component {
             <Grid.Column centered textAlign="center">
               <Div padding="80px 0 70px">
                 <Text is="h1" f={[2, 1, 1]}>
-                  Call Family First Construction today!
+                  <Span fontFamily="'Oswald', sans-serif">
+                    {' '}
+                    Call Family First Construction today!
+                  </Span>
                 </Text>
                 <Text is="h2" f={[3, 2, 2]}>
                   <a className={`${aWhite}`} href="tel:+8472525126">
@@ -782,7 +800,11 @@ export default class Index extends Component {
             <Grid container centered>
               <Grid.Column textAlign="center">
                 <Text is="h2" f={[4, null, 3, 2]}>
-                  <Span color="#fff">
+                  <Span
+                    color="#fff"
+                    fontFamily="'Oswald', sans-serif"
+                    fontWeight="400"
+                  >
                     Home damaged by fire, water, or mold?
                   </Span>
                 </Text>
@@ -790,7 +812,11 @@ export default class Index extends Component {
                   <Span color="#fff" fontWeight="100">
                     VISIT
                   </Span>{' '}
-                  <Span color="#528bfc" fontWeight="700">
+                  <Span
+                    color="#528bfc"
+                    fontFamily="'Oswald', sans-serif"
+                    fontWeight="700"
+                  >
                     {' '}
                     FAMILY FIRST RESTORATION.COM
                   </Span>
