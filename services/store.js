@@ -15,16 +15,5 @@ if (debug) {
 
 middleware.push(thunk)
 
-export default (initialState = {}, { isServer, req }) => {
-  const cookies = new Cookies(isServer ? req.headers.cookie : null)
-  const accessToken = cookies.get('access_token')
-  const store = create(reducers, initialState, applyMiddleware(...middleware))
-
-  /* Always load the user information */
-  if (accessToken) {
-    store.dispatch(login({ accessToken }))
-    store.dispatch(loadMe())
-  }
-
-  return store
-}
+export default (initialState = {}, { isServer, req }) =>
+  create(reducers, initialState, applyMiddleware(...middleware))
