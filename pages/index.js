@@ -22,6 +22,8 @@ import { Router } from 'routes'
 
 css.global('*', { fontFamily: `'Open Sans', 'Oswald', sans-serif` })
 
+const primaryColor = '#F27D26'
+
 const divMenu = css({
   height: '200px',
   backgroundColor: '#fff',
@@ -183,7 +185,7 @@ const tableWidth = css({
 })
 const inquireWidth = css({
   width: '94vw',
-  backgroundColor: '#1d273b',
+  backgroundColor: primaryColor,
   color: '#fff',
   paddingBottom: '5px',
   paddingLeft: '0!important',
@@ -198,7 +200,7 @@ const inquireWidth = css({
 })
 const inquireP1 = css({
   backgroundColor: '#fff',
-  color: '#1d273b',
+  color: primaryColor,
   fontSize: '22px',
   padding: '10px 15px 10px 15px',
   marginBottom: '15px',
@@ -274,7 +276,7 @@ const getFreequote = css({
     width: '100%',
     height: '70px',
     fontSize: '22px',
-    backgroundColor: '#1d273b',
+    backgroundColor: primaryColor,
     color: '#fff',
     textTransform: 'uppercase',
     padding: '15px 30px',
@@ -284,7 +286,7 @@ const getFreequote = css({
       height: '94px'
     },
     ':hover': {
-      backgroundColor: '#1d273b',
+      backgroundColor: primaryColor,
       color: '#fff'
     }
   }
@@ -782,14 +784,14 @@ export default class Index extends Component {
           </Grid>
         </Div>
 
-        <Div backgroundColor="#1d273b" color="#fff">
+        <Div backgroundColor={primaryColor} color="#fff">
           <Grid container>
             <Grid.Column centered textAlign="center">
               <Div padding="80px 0 70px">
                 <Text is="h1" f={[2, 1, 1]}>
                   <Span fontFamily="'Oswald', sans-serif">
                     {' '}
-                    Call Family First Construction today!
+                    Call Family First Construction Today!
                   </Span>
                 </Text>
                 <Text is="h2" f={[3, 2, 2]}>
