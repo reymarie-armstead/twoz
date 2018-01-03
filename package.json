@@ -3,7 +3,9 @@
   "scripts": {
     "start": "node server.js",
     "build": "next build && next export",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "deploy":
+      "yarn build && aws s3 cp out s3://family1stconstruction.com --recursive --acl public-read"
   },
   "lint-staged": {
     "*.{js,json,css}": ["prettier --write", "git add"]
