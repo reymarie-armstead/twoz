@@ -239,7 +239,7 @@ const bannerGrid = css({
     padding: '40px 0 40px',
     '@media(min-width: 500px)': {
       padding: '80px 0 40px',
-      backgroundSize: 'initial',
+      backgroundSize: '500px',
       backgroundRepeat: 'no-repeat',
       backgroundPosition: '75% 100%',
       marginBottom: '-14px!important',
@@ -255,7 +255,7 @@ const chooseGrid = css({
   margin: '0 auto',
   '@media(min-width: 768px)': {
     backgroundImage: "url('/static/bg-copy2.png')",
-    backgroundSize: '500px',
+    backgroundSize: '400px',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center 100%'
   }
