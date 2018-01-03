@@ -239,7 +239,7 @@ const bannerGrid = css({
     padding: '40px 0 40px',
     '@media(min-width: 500px)': {
       padding: '80px 0 40px',
-      backgroundSize: 'initial',
+      backgroundSize: '500px',
       backgroundRepeat: 'no-repeat',
       backgroundPosition: '75% 100%',
       marginBottom: '-14px!important',
@@ -255,7 +255,7 @@ const chooseGrid = css({
   margin: '0 auto',
   '@media(min-width: 768px)': {
     backgroundImage: "url('/static/bg-copy2.png')",
-    backgroundSize: '500px',
+    backgroundSize: '400px',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center 100%'
   }
@@ -357,7 +357,12 @@ export default class Index extends Component {
       <Div key="body">
         <Div backgroundImage="url('/static/bg.png')" backgroundSize="cover">
           <Div className={`${divMenu}`}>
-            <Menu secondary stackable className={`${menuclass}`} centered>
+            <Menu
+              secondary
+              stackable
+              className={`${menuclass}`}
+              centered="true"
+            >
               <Menu.Item>
                 <Image className={`${logo}`} src="/static/ffc-logo.svg" />
               </Menu.Item>
@@ -482,7 +487,7 @@ export default class Index extends Component {
                     <Table unstackable className={`${tableClass}`}>
                       <Table.Header>
                         <Table.Row>
-                          <Table.Cell colspan="3">
+                          <Table.Cell colSpan="3">
                             <strong>CAPABILITIES AND SERVICES</strong>
                           </Table.Cell>
                         </Table.Row>
@@ -524,7 +529,7 @@ export default class Index extends Component {
                       </Table.Body>
                     </Table>
                   </Responsive>
-                  <Grid marginTop="0">
+                  <Grid margintop="0">
                     <Div className={`${inquireWidth}`}>
                       <P className={`${inquireP1}`}>INQUIRE TO GET STARTED!</P>
                       <P fontSize="22px" paddingLeft="15px" marginBottom="5px">
@@ -786,7 +791,7 @@ export default class Index extends Component {
 
         <Div backgroundColor={primaryColor} color="#fff">
           <Grid container>
-            <Grid.Column centered textAlign="center">
+            <Grid.Column textAlign="center" centered="true">
               <Div padding="80px 0 70px">
                 <Text is="h1" f={[2, 1, 1]}>
                   <Span fontFamily="'Oswald', sans-serif">
@@ -810,7 +815,7 @@ export default class Index extends Component {
               <H1 className={`${h1Class}`}>OUR ACCREDITATIONS</H1>
             </Div>
             <Grid.Row>
-              <Grid.Column centered textAlign="center">
+              <Grid.Column textAlign="center" centered="true">
                 <Image.Group>
                   <Image src="/static/otc-logo.png" className={`${imgLogo}`} />
                   <Image src="/static/iri.png" className={`${imgLogo}`} />
@@ -918,7 +923,7 @@ export default class Index extends Component {
                 </p>
               </Grid.Column>
               <Grid.Column textAlign="left" computer={5}>
-                <p horizontal>
+                <p horizontal="true">
                   <a href="https://armstead.io" className={`${aBlack}`}>
                     Empowered by{' '}
                     <Image src="/static/a-logo.png" width="20" spaced />{' '}
@@ -951,7 +956,7 @@ export default class Index extends Component {
               </Grid.Column>
               <Grid.Column width="16" textAlign="center">
                 <Div marginTop="10px">
-                  <p horizontal>
+                  <p horizontal="true">
                     <a href="https://armstead.io" className={`${aBlack}`}>
                       Empowered by{' '}
                       <Image src="/static/a-logo.png" width="20" spaced />{' '}
