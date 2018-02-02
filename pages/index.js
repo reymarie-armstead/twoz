@@ -13,67 +13,54 @@ import {
   Menu,
   Button,
   Table,
-  Responsive
+  Responsive,
+  Accordion
 } from 'semantic-ui-react'
 import { Div, H1, H2, P, Span } from 'glamorous'
 import { Text } from 'axs'
 import store from 'services/store'
 import { Router } from 'routes'
 
-css.global('*', { fontFamily: `'Open Sans', 'Oswald', sans-serif` })
+css.global('*', { fontFamily: `'Montserrat', sans-serif` })
 
-const primaryColor = '#F27D26'
+const primaryColor = '#ffb725'
+const secondaryColor = '#5c5cf7'
 
 const divMenu = css({
-  height: '200px',
-  backgroundColor: '#fff',
-  '@media(min-width: 768px)': {
-    height: '135px'
-  }
+  textAlign: 'center',
+  background: 'linear-gradient(to left, rgba(255,255,255,.01) 0%, rgba(255,255,255,.8) 50%, rgba(255,255,255,.01) 100%)',
+  backgroundColor: 'transparent',
+  backgroundPosition: 'center bottom',
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: '60% 2px '
 })
 const menuclass = css({
   '.ui': {
-    width: '260px!important',
-    margin: '0 auto!important',
+    backgroundColor: 'transparent',
     '@media(min-width: 768px)': {
-      maxWidth: '1600px',
+      maxWidth: '590px',
       width: '100%!important',
-      backgroundColor: 'rgba(255, 255, 255, 1)',
-      color: '#000',
+      textAlign: 'center',
       margin: 'auto!important',
-      height: '135px',
       border: '0',
-      boxShadow: '0 1px 2px 0 rgba(34,36,38,0)'
     }
   }
 })
 const menuitem = css({
-  fontSize: '22px',
-  '@media(min-width: 768px)': {
-    fontSize: '14px'
-  },
-  '@media(min-width: 1080px)': {
-    fontSize: '22px'
-  }
-})
-const menuicon = css({
-  width: '30px',
-  '@media(min-width: 768px)': {
-    width: '24px'
-  }
-})
-const menuRight = css({
-  '@media(max-width: 767px)': {
-    display: 'none!important'
-  }
-})
-const mobilemenu = css({
-  width: '230px!important',
-  margin: '0 auto',
+  color: '#fff!important',
+  fontSize: '20px',
   textAlign: 'center',
+  padding: '37px 15px!important',
+  letterSpacing: '1.3px',
   '@media(min-width: 768px)': {
-    display: 'none!important'
+    fontSize: '20px'
   }
+})
+
+const wizardyImg = css({
+    position: 'absolute!important',
+    left: '50%',
+    transform: 'translate(-50%, -65%)',
 })
 const logo = css({
   width: '260px',
@@ -85,218 +72,260 @@ const logo = css({
     width: '260px'
   }
 })
-const introtxH1 = css({
-  fontFamily: `'Oswald', sans-serif`,
-  fontSize: '39px',
-  color: '#242424',
-  '@media(min-width: 400px)': {
-    fontSize: '50px'
-  },
-  '@media(min-width: 768px)': {
-    fontSize: '70px'
-  },
-  '@media(min-width: 992px)': {
-    fontSize: '45px'
-  },
-  '@media(min-width: 1200px)': {
-    fontSize: '54px'
-  }
-})
-const introtxH2 = css({
-  fontFamily: `'Oswald', sans-serif`,
-  fontWeight: '600',
-  color: '#555555',
-  fontSize: '20px',
-  '@media(min-width: 400px)': {
-    fontSize: '26px'
-  },
-  '@media(min-width: 768px)': {
-    fontSize: '40px'
-  },
-  '@media(min-width: 992px)': {
-    fontSize: '24px'
-  },
-  '@media(min-width: 1200px)': {
-    fontSize: '28px'
-  }
+const aBlack = css({
+  
 })
 
 const h1Class = css({
-  fontFamily: `'Oswald', sans-serif`,
-  fontWeight: '400',
+  fontFamily: `'Montserrat', sans-serif`,
+  fontWeight: 'bold',
   fontSize: '34px',
-  color: '#242424',
   '@media(min-width: 480px)': {
-    fontSize: '50px'
+    fontSize: '42px',
   }
 })
 
-const aWhite = css({
-  fontFamily: `'Oswald', sans-serif`,
-  fontWeight: '600',
-  color: '#fff'
-})
-const aBlack = css({
-  color: 'rgba(0,0,0,.87)',
-  ':hover': {
-    color: 'rgba(0,0,0,.87)'
-  }
-})
-const aClass = css({
-  color: '#f47d0a'
-})
 const h3Class = css({
-  fontFamily: `'Oswald', sans-serif`,
-  fontWeight: '400',
+  fontFamily: `'Montserrat', sans-serif`,
   marginTop: '20px!important',
-  fontSize: '20px'
-})
-const inputClass = css({
-  fontSize: '18px'
-})
-const cellClass = css({
-  borderTop: 'transparent!important'
-})
-const tableClass = css({
-  '.ui': {
-    fontFamily: `'Oswald', sans-serif`,
-    width: '94vw',
-    border: 'transparent!important',
-    backgroundColor: 'rgba(255, 255, 255, .7)',
-    fontSize: '13px',
-    borderRadius: '0',
-    padding: '0!important',
-    display: 'none',
-    marginBottom: '15px!important',
-    '@media(min-width: 480px)': {
-      display: 'block'
-    },
-    '@media(min-width: 718px)': {
-      width: 'auto'
-    }
-  }
-})
-const tableWidth = css({
-  '.ui': {
-    '@media(max-width: 480px)': {
-      display: 'none'
-    }
-  }
-})
-const inquireWidth = css({
-  width: '94vw',
-  backgroundColor: primaryColor,
-  color: '#fff',
-  paddingBottom: '5px',
-  paddingLeft: '0!important',
-  paddingRight: '0!important',
-  marginBottom: '15px',
-  marginTop: '14px',
-  marginLeft: '15px',
-  '@media(min-width: 718px)': {
-    width: '282px',
-    marginRight: '0px'
-  }
-})
-const inquireP1 = css({
-  backgroundColor: '#fff',
-  color: primaryColor,
-  fontSize: '22px',
-  padding: '10px 15px 10px 15px',
-  marginBottom: '15px',
-  '@media(min-width: 400px)': {
-    fontSize: '20px'
-  }
+  fontSize: '20px',
+  color: '#18a9de',
 })
 
-const inquireH1 = css({
-  fontSize: '38px',
-  paddingLeft: '15px',
-  marginTop: '10px',
-  color: '#fff',
-  '@media(min-width: 400px)': {
-    fontSize: '36px'
-  }
-})
-const spacer = css({
-  padding: '0',
-  '@media(min-width: 992px)': {
-    padding: '165px'
-  },
-  '@media(min-width: 1200px)': {
-    padding: '261px'
-  }
-})
-const spacer2 = css({
-  padding: '0',
-  '@media(min-width: 768px)': {
-    padding: '35px'
-  }
-})
 const bannerGrid = css({
   '.ui': {
     margin: 'auto!important',
     padding: '40px 0 40px',
-    '@media(min-width: 500px)': {
-      padding: '80px 0 40px',
-      backgroundSize: '500px',
-      backgroundRepeat: 'no-repeat',
-      backgroundPosition: '75% 100%',
-      marginBottom: '-14px!important',
-      backgroundImage: `url('/static/background-copy.png')`
-    }
-  }
-})
-const chooseGrid = css({
-  padding: '100px 0 150px',
-  backgroundColor: '#f9f9f9',
-  color: '#686868',
-  fontSize: '16px',
-  margin: '0 auto',
-  '@media(min-width: 768px)': {
-    backgroundImage: "url('/static/bg-copy2.png')",
-    backgroundSize: '400px',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center 100%'
-  }
-})
-
-const imgLogo = css({
-  '.ui': {
-    display: 'inline-block!important',
-    margin: '15px 15px!important',
-    '@media(min-width: 768px)': {
-      margin: '15px 30px!important'
-    }
-  }
-})
-
-const getFreequote = css({
-  '.ui': {
-    width: '100%',
-    height: '70px',
-    fontSize: '22px',
-    backgroundColor: primaryColor,
     color: '#fff',
+    '@media(min-width: 500px)': {
+      padding: '80px 0 320px',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center bottom',
+      backgroundSize: 'contain',
+      backgroundImage: `url('/static/img/city-bg.png')`
+    },
+    ' p':{
+      textAlign: 'center',
+      color: '#fff',
+      maxWidth: '780px',
+      margin: '0 auto 30px',
+    }
+  }
+})
+const service = css({
+  paddingTop: '200px',
+  color: '#353535',
+  fontSize: '16px',
+  ' h1':{
+    color: '#18a9de',
+    marginBottom: '30px',
+  }
+})
+
+const serviceGrid = css({
+  '.ui': {
+    paddingTop: '100px',
+    paddingBottom: '50px',
+  }
+})
+
+const bg3 = css({
+  backgroundImage: `url('/static/img/pricing-bg.png')`,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+})
+
+const solutionsGrid = css({
+  '.ui': {
+    paddingTop: '100px',
+    paddingBottom: '60px',
+    ' h1':{
+      color: '#4e529d',
+    },
+    ' h4':{
+      color: '#3d3d3d',
+      fontSize: '20px',
+      fontFamily: `'Montserrat', sans-serif`,
+    },
+    ' p':{
+      color: '#3d3d3d',
+      fontSize: '18px',
+    },
+  }
+})
+
+const pricingGrid = css({
+  '.ui': {
+    paddingTop: '100px',
+    paddingBottom: '100px',
+    textAlign: 'center',
+    ' h1':{
+      color: '#000',
+    },
+    ' h4':{
+      color: '#3d3d3d',
+      fontSize: '20px',
+      fontFamily: `'Montserrat', sans-serif`,
+      fontWeight: '300',
+    },
+  }
+})
+
+const formClass = css({
+  '.ui': {
+    boxShadow: '0px 0px 5px 0px rgba(0,0,0,.15)!important',
+    padding: '25px 30px 30px!important',
+    borderRadius: '10px',
+    fontSize: '16px',
+    fontFamily: `'Montserrat', sans-serif`,
+    backgroundColor: '#fff',
+    marginBottom: '-200px',
+    marginTop: '30px',
+    ' .ui input':{
+        backgroundColor: '#f9f9f9!important',
+        height: '80px',
+    },
+    ' textarea':{
+        backgroundColor: '#f9f9f9!important',
+    },
+    ' button':{
+      fontSize: '18px',
+    }
+  }
+})
+
+const accordionGrid = css({
+  '.ui': {
+    paddingTop: '80px',
+    marginBottom: '50px',
+  }
+})
+
+const accordionStyle = css({
+  '.ui': {
+    boxShadow: '1px 3px 10px 5px rgba(0,0,0,.15)!important',
+    paddingTop: '25px!important',
+    marginBottom: '50px',
+    fontSize: '20px',
+    textAlign: 'left',
+    ' .title':{
+        paddingLeft: '50px!important',
+    },
+    ' .content':{
+      paddingLeft: '50px!important',
+    }
+  }
+})
+
+const circleClass = css({
+  position: 'relative',
+  width: '150px',
+  height: '150px',
+  backgroundColor: '#f9f9f9',
+  borderRadius: '50%',
+  float: 'left',
+  marginRight: '40px',
+  opacity: '.85',
+  ':before':{
+    content:`url('/static/img/quote.png')`,
+    position: 'absolute',
+    top: '-30px',
+    left: '-30px',
+  }
+})
+
+const quotesClass = css({
+  '.ui': {
+    paddingTop: '100px',
+    paddingBottom: '100px',
+    ' p':{
+      fontSize: '18px',
+      maxWidth: '930px',
+      marginTop: '25px',
+    },
+    ' h4':{
+      fontSize: '20px',
+      color: '#18a9de',
+    }
+
+  }
+})
+
+const getquote2 = css({
+  '.ui': {
+    width: '240px',
+    height: '60px',
+    fontSize: '16px',
+    backgroundColor: secondaryColor,
+    color: '#fff',
+    margin: '10px',
     textTransform: 'uppercase',
     padding: '15px 30px',
+    borderRadius: '30px',
     transition: 'all .5s',
-    '@media(min-width: 400px)': {
-      fontSize: '30px',
-      height: '94px'
-    },
+    ':hover': {
+      backgroundColor: secondaryColor,
+      color: '#fff'
+    }
+  }
+})
+
+const getquote = css({
+  '.ui': {
+    width: '240px',
+    height: '60px',
+    fontSize: '16px',
+    backgroundColor: primaryColor,
+    color: '#fff',
+    margin: '10px',
+    textTransform: 'uppercase',
+    padding: '15px 30px',
+    borderRadius: '30px',
+    transition: 'all .5s',
     ':hover': {
       backgroundColor: primaryColor,
       color: '#fff'
     }
   }
 })
+
+const learnmore = css({
+  '.ui': {
+    width: '240px',
+    height: '60px',
+    fontSize: '16px',
+    backgroundColor: 'transparent',
+    color: '#fff',
+    margin: '10px',
+    border: 'solid 1px #fff',
+    textTransform: 'uppercase',
+    padding: '15px 30px',
+    borderRadius: '30px',
+    transition: 'all .5s',
+    ':hover': {
+      backgroundColor: 'transparent',
+      color: '#fff'
+    }
+  }
+})
+
 const footerClass = css({
-  padding: '40px 10px',
+  color: '#fff',
+  backgroundImage: `url('/static/img/footer-bg.png')`,
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover',
+  padding: '400px 10px 50px',
   '@media(min-width: 768px)': {
-    padding: '50px 15px',
-    maxWidth: '1600px',
-    margin: 'auto!important'
+    padding: '400px 15px 100px',
+  },
+  ' h2':{
+    fontSize: '30px',
+    fontWeight: '400',
+  },
+  ' p':{
+    fontWeight: '400',
+    fontSize: '20px',
   }
 })
 
@@ -311,15 +340,16 @@ export default class Index extends Component {
   state = {
     name: '',
     email: '',
-    phone: '',
+    address: '',
     message: '',
     submitting: false,
-    success: false
+    success: false,
+    activeIndex: 0
   }
   submit = async () => {
     this.setState({ submitting: true })
 
-    const { name, email, phone, message } = this.state
+    const { name, email, address, message, activeItem } = this.state
 
     const data = await request
       .post('https://contact-form.ams.armstead.io/')
@@ -329,7 +359,7 @@ export default class Index extends Component {
         body: `
           Name: ${name}\r
           Email: ${email}\r
-          Phone: ${phone}\r
+          Phone: ${address}\r
           ---\r\r
           ${message}
         `
@@ -338,7 +368,7 @@ export default class Index extends Component {
     this.setState({
       name: '',
       email: '',
-      phone: '',
+      address: '',
       message: '',
       submitting: false,
       success: true
@@ -346,642 +376,320 @@ export default class Index extends Component {
 
     setTimeout(() => this.setState({ success: false }), 5000)
   }
+  handleClick = (e, titleProps) => {
+    const { index } = titleProps
+    const { activeIndex } = this.state
+    const newIndex = activeIndex === index ? -1 : index
+
+    this.setState({ activeIndex: newIndex })
+  }
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
   render() {
-    const { name, email, phone, message, submitting, success } = this.state
+    const { name, email, address, message, submitting, success, activeItem, activeIndex  } = this.state
 
     return [
       <Head key="head">
-        <title>Family First Construction</title>
+        <title>TwoZ</title>
       </Head>,
       <Div key="body">
-        <Div backgroundImage="url('/static/bg.png')" backgroundSize="cover">
+        <Div backgroundImage="url('/static/img/header-bg.jpg')" backgroundSize="cover" backgroundPosition="center">
           <Div className={`${divMenu}`}>
             <Menu
               secondary
               stackable
               className={`${menuclass}`}
-              centered="true"
             >
-              <Menu.Item>
-                <Image className={`${logo}`} src="/static/ffc-logo.svg" />
-              </Menu.Item>
               <Menu.Item
+                name='about'
+                active={activeItem === 'about'}
                 onClick={this.handleItemClick}
-                className={`${mobilemenu}`}
+                className={`${menuitem}`}
               >
-                <Image
-                  src="/static/speech.png"
-                  className={`${menuicon}`}
-                  spaced
-                />
-                <p className={`${menuitem}`}>
-                  <a className={`${aBlack}`} href="tel:+8472525126">
-                    <strong>(847) 252-5126</strong>
-                  </a>{' '}
-                  <br />
-                  <a
-                    className={`${aBlack}`}
-                    href="mailto:familyfirstrestoration@live.com"
-                  >
-                    Email Us
-                  </a>
-                </p>
+                ABOUT
               </Menu.Item>
-              <Menu.Menu position="right" className={`${menuRight}`}>
-                <Menu.Item onClick={this.handleItemClick}>
-                  <Image
-                    src="/static/place.png"
-                    className={`${menuicon}`}
-                    spaced
-                  />
-                  <p className={`${menuitem}`}>
-                    <strong>Chicago, Northbrook</strong> <br />&amp; surrounding
-                    areas
-                  </p>
-                </Menu.Item>
-                <Menu.Item onClick={this.handleItemClick}>
-                  <Image
-                    src="/static/time.png"
-                    className={`${menuicon}`}
-                    spaced
-                  />
-                  <p className={`${menuitem}`}>
-                    <strong>Mon-Sat 7AM-5PM</strong> <br />Sunday CLOSED
-                  </p>
-                </Menu.Item>
-                <Menu.Item onClick={this.handleItemClick}>
-                  <Image
-                    src="/static/speech.png"
-                    className={`${menuicon}`}
-                    spaced
-                  />
-                  <p className={`${menuitem}`}>
-                    <a className={`${aBlack}`} href="tel:+8472525126">
-                      <strong>(847) 252-5126</strong>
-                    </a>{' '}
-                    <br />
-                    <a
-                      className={`${aBlack}`}
-                      href="mailto:familyfirstrestoration@live.com"
-                    >
-                      Email Us
-                    </a>
-                  </p>
-                </Menu.Item>
-              </Menu.Menu>
+
+              <Menu.Item
+                name='casesStudy'
+                active={activeItem === 'casesStudy'}
+                onClick={this.handleItemClick}
+                className={`${menuitem}`}
+              >
+                CASE STUDY
+              </Menu.Item>
+
+              <Menu.Item
+                name='services'
+                active={activeItem === 'services'}
+                onClick={this.handleItemClick}
+                className={`${menuitem}`}
+              >
+                SERVICES
+              </Menu.Item>
+
+              <Menu.Item
+                name='contacts'
+                active={activeItem === 'contacts'}
+                onClick={this.handleItemClick}
+                className={`${menuitem}`}
+              >
+                CONTACTS
+              </Menu.Item>
+
             </Menu>
           </Div>
-          <Grid container className={`${bannerGrid}`} centered>
-            <Grid.Column mobile={16} tablet={16} computer={6}>
-              <H1 className={`${introtxH1}`}>WE WILL BUILD YOUR FUTURE</H1>
-              <H2 className={`${introtxH2}`}>YOU DREAM IT. WE BUILD IT!</H2>
+          <Grid className={`${bannerGrid}`} centered>
+            <Grid.Column textAlign="center">
+              <Image centered src="/static/img/logo.png" />
+              <H1 className={`${h1Class}`}>Tech Wizardry Solutions, made splendidly.</H1>
+              <P>
+                This is the content of the area. We can replace any content on this paragraph. This is the content of the area. We can replace any content on this paragraph.
+              </P>
+              <Button type="submit" className={`${getquote}`}>
+                GET A QUOTE
+              </Button>
+              <Button type="" className={`${learnmore}`}>
+                LEARN MORE
+              </Button>
+            </Grid.Column>
+          </Grid>
+        </Div>
+        <Image className={`${wizardyImg}`} src="/static/img/wizardy-img.png" />
+        <Div className={`${service}`}>
+          <Grid container textAlign="center" centered>
+            <Grid.Column
+              mobile={16}
+              tablet={12}
+              computer={12}
+              verticalAlign="middle"
+            >
+              <H1 className={`${h1Class}`}>Everything you need to know</H1>
+              <P>
+                This is the content of the area. We can replace any content on this paragraph. This is the content of the area. We can replace any content on this paragraph.This is the content of the area. We can replace any content on this paragraph. This is thecontent of the area. We can replace any content on this paragraph. This is the content of the area. 
+              </P>
+              <Button type="submit" className={`${getquote2}`}>
+                GET A QUOTE
+              </Button>
+            </Grid.Column>
+          </Grid>
+
+          <Grid container className={`${serviceGrid}`} centered>
+            <Grid.Column mobile={16} tablet={8} computer={5} textAlign="center">
+              <Div marginTop="50px">
+                <Image centered src="/static/img/serve-icon1.png" />
+                <h3 className={`${h3Class}`}>SERVICES NAME</h3>
+                <p>
+                  This is the content of the area. We can replace any content on this paragraph. This is the 
+                </p>
+              </Div>
+            </Grid.Column>
+            <Grid.Column mobile={16} tablet={8} computer={5} textAlign="center">
+              <Div marginTop="50px">
+                <Image centered src="/static/img/serve-icon2.png" />
+                <h3 className={`${h3Class}`}>SERVICES NAME</h3>
+                <p>
+                  This is the content of the area. We can replace any content on this paragraph. This is the 
+                </p>
+              </Div>
+            </Grid.Column>
+            <Grid.Column mobile={16} tablet={8} computer={5} textAlign="center">
+              <Div marginTop="50px">
+                <Image centered src="/static/img/serve-icon3.png" />
+                <h3 className={`${h3Class}`}>SERVICES NAME</h3>
+                <p>
+                  This is the content of the area. We can replace any content on this paragraph. This is the 
+                </p>
+              </Div>
+            </Grid.Column>
+
+            <Grid.Column mobile={16} tablet={8} computer={5} textAlign="center">
+              <Div marginTop="50px">
+                <Image centered src="/static/img/serve-icon2.png" />
+                <h3 className={`${h3Class}`}>SERVICES NAME</h3>
+                <p>
+                  This is the content of the area. We can replace any content on this paragraph. This is the 
+                </p>
+              </Div>
+            </Grid.Column>
+            <Grid.Column mobile={16} tablet={8} computer={5} textAlign="center">
+              <Div marginTop="50px">
+                <Image centered src="/static/img/serve-icon3.png" />
+                <h3 className={`${h3Class}`}>SERVICES NAME</h3>
+                <p>This is the content of the area. We can replace any content on this paragraph. This is the </p>
+              </Div>
+            </Grid.Column>
+            <Grid.Column mobile={16} tablet={8} computer={5} textAlign="center">
+              <Div marginTop="50px">
+                <Image centered src="/static/img/serve-icon1.png" />
+                <h3 className={`${h3Class}`}>SERVICES NAME</h3>
+                <p>
+                  This is the content of the area. We can replace any content on this paragraph. This is the 
+                </p>
+              </Div>
+            </Grid.Column>
+          </Grid>
+        </Div>
+     
+        <Div className={`${bg3}`}>
+          <Grid container className={`${solutionsGrid}`}>
+            <Grid.Column mobile={16} tablet={8} computer={8} verticalAlign='middle'>
+              <H1 className={`${h1Class}`}>Wizardy Solutions</H1>
+              <h4>This is the content of the area. We can replace any content on this paragraph.</h4>
+              <p>This is the content of the area. We can replace any content on this paragraph.This is the content of the area. We can replaceany content on this paragraph.This is the content of the area.</p>
+            </Grid.Column>
+            <Grid.Column mobile={16} tablet={8} computer={8}>
+              <Image src="/static/img/wizardy-bg.png" />
+            </Grid.Column>
+          </Grid>
+          <Grid container className={`${pricingGrid}`}>
+            <Grid.Column verticalAlign='middle'>
+              <H1 className={`${h1Class}`}>Plans and Pricing</H1>
+              <h4>This is the content of the area. We can replace any content on this paragraph.</h4>
+              <Button type="submit" className={`${getquote2}`}>
+                GET A QUOTE
+              </Button>
+            </Grid.Column>
+          </Grid>
+
+          <Grid container className={`${accordionGrid}`} centered>
+            <Grid.Column
+              mobile={16}
+              tablet={12}
+              computer={11}
+              verticalAlign="middle">
+              <Accordion fluid styled className={`${accordionStyle}`}>
+              <H1 textAlign="center" className={`${h1Class}`}>FAQ</H1>
+                <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
+                  <Icon name='dropdown' />
+                  FAQ
+                </Accordion.Title>
+                <Accordion.Content active={activeIndex === 0}>
+                  <p>
+                    This is the content of the area. We can replace any content on this paragraph.
+                  </p>
+                </Accordion.Content>
+
+                <Accordion.Title active={activeIndex === 1} index={1} onClick={this.handleClick}>
+                  <Icon name='dropdown' />
+                  FAQ
+                </Accordion.Title>
+                <Accordion.Content active={activeIndex === 1}>
+                  <p>
+                    This is the content of the area. We can replace any content on this paragraph.
+                  </p>
+                </Accordion.Content>
+
+                <Accordion.Title active={activeIndex === 2} index={2} onClick={this.handleClick}>
+                  <Icon name='dropdown' />
+                  FAQ
+                </Accordion.Title>
+                <Accordion.Content active={activeIndex === 2}>
+                  <p>
+                    This is the content of the area. We can replace any content on this paragraph.
+                  </p>
+                </Accordion.Content>
+
+                <Accordion.Title active={activeIndex === 3} index={3} onClick={this.handleClick}>
+                  <Icon name='dropdown' />
+                  FAQ
+                </Accordion.Title>
+                <Accordion.Content active={activeIndex === 3}>
+                  <p>
+                    This is the content of the area. We can replace any content on this paragraph.
+                  </p>
+                </Accordion.Content>
+              </Accordion>
+            </Grid.Column>
+          </Grid>
+
+          <Grid container className={`${quotesClass}`} verticalAlign="middle">
+            <Grid.Column>
+              <div className={`${circleClass}`}/>
+                <p>This is the content of the area. We can replace any content on this paragraph.This is the content of the area. We can replace any content on this paragraph.This is the content of the area. We can replace any content on this paragraph.</p>
+                <h4>- NATHAN DRAKE</h4>
+            </Grid.Column>
+          </Grid>
+        </Div>
+
+          <Grid container centered>
+            <Grid.Column 
+            mobile={16}
+            tablet={12}
+            computer={11}
+            verticalAlign='middle'>
               {success ? (
                 <p>Thanks! We'll be in touch soon.</p>
               ) : (
-                <Form onSubmit={this.submit} loading={submitting}>
+                <Form onSubmit={this.submit} loading={submitting} className={`${formClass}`}>
+                  <Form.Group widths='equal'>
+                    <Form.Input
+                      name="name"
+                      value={name}
+                      placeholder="Name"
+                      onChange={this.handleChange}
+                      required
+                    />
+                    <Form.Input
+                      name="email"
+                      value={email}
+                      placeholder="Email"
+                      onChange={this.handleChange}
+                      required
+                    />
+                  </Form.Group>
                   <Form.Input
-                    name="name"
-                    value={name}
-                    placeholder="Name"
-                    className={`${inputClass}`}
-                    onChange={this.handleChange}
-                    required
-                  />
-                  <Form.Input
-                    name="email"
-                    value={email}
-                    placeholder="Email"
-                    className={`${inputClass}`}
-                    onChange={this.handleChange}
-                    required
-                  />
-                  <Form.Input
-                    name="phone"
-                    value={phone}
-                    placeholder="Phone"
-                    className={`${inputClass}`}
+                    name="address"
+                    value={address}
+                    placeholder="Address"
                     onChange={this.handleChange}
                     required
                   />
                   <Form.TextArea
                     name="message"
                     value={message}
-                    rows="6"
+                    rows="10"
                     placeholder="Message"
-                    className={`${inputClass}`}
                     onChange={this.handleChange}
                     required
                   />
-                  <Button type="submit" className={`${getFreequote}`}>
-                    GET A FREE QUOTE
+                  <Button type="submit" className={`${getquote}`}>
+                    SEND
                   </Button>
                 </Form>
               )}
             </Grid.Column>
-            <Grid.Column mobile={16} tablet={16} computer={10}>
-              <Div>
-                <Div className={`${spacer}`} />
-                <Grid>
-                  <Responsive className={`${tableWidth}`}>
-                    <Table unstackable className={`${tableClass}`}>
-                      <Table.Header>
-                        <Table.Row>
-                          <Table.Cell colSpan="3">
-                            <strong>CAPABILITIES AND SERVICES</strong>
-                          </Table.Cell>
-                        </Table.Row>
-                      </Table.Header>
-                      <Table.Body>
-                        <Table.Row>
-                          <Table.Cell className={`${cellClass}`}>
-                            KITCHEN
-                          </Table.Cell>
-                          <Table.Cell className={`${cellClass}`}>
-                            HARDWOOD
-                          </Table.Cell>
-                          <Table.Cell className={`${cellClass}`}>
-                            TILES SALES & INSTALLATION
-                          </Table.Cell>
-                        </Table.Row>
-                        <Table.Row>
-                          <Table.Cell className={`${cellClass}`}>
-                            BATHROOM
-                          </Table.Cell>
-                          <Table.Cell className={`${cellClass}`}>
-                            FLOORS
-                          </Table.Cell>
-                          <Table.Cell className={`${cellClass}`}>
-                            CONCRETE REPAIRS
-                          </Table.Cell>
-                        </Table.Row>
-                        <Table.Row>
-                          <Table.Cell className={`${cellClass}`}>
-                            BASEMENTS
-                          </Table.Cell>
-                          <Table.Cell className={`${cellClass}`}>
-                            CARPET
-                          </Table.Cell>
-                          <Table.Cell className={`${cellClass}`}>
-                            STRUCTURAL REPAIRS
-                          </Table.Cell>
-                        </Table.Row>
-                      </Table.Body>
-                    </Table>
-                  </Responsive>
-                  <Grid margintop="0">
-                    <Div className={`${inquireWidth}`}>
-                      <P className={`${inquireP1}`}>INQUIRE TO GET STARTED!</P>
-                      <P fontSize="22px" paddingLeft="15px" marginBottom="5px">
-                        Call us now
-                      </P>
-                      <a href="tel:+8472525126">
-                        <H1 className={`${inquireH1}`}>(847) 252-5126</H1>
-                      </a>
-                    </Div>
-                  </Grid>
-                </Grid>
-              </Div>
-            </Grid.Column>
           </Grid>
-        </Div>
-
-        <Div padding="100px 0" color="#686868" fontSize="16px">
-          <Grid container textAlign="center" centered>
-            <Grid.Column
-              mobile={16}
-              tablet={12}
-              computer={10}
-              verticalAlign="middle"
-            >
-              <H1 className={`${h1Class}`}>OUR SERVICES</H1>
-              <P>
-                Family First Construction offers several services to accomodate
-                your every construction need. Below is a list of examples of
-                some of the things we can do for you.
-              </P>
-            </Grid.Column>
-          </Grid>
-
-          <Grid container textAlign="center">
-            <Grid.Column mobile={16} tablet={8} computer={5}>
-              <Div marginTop="50px">
-                <Image centered src="/static/design-1.jpg" />
-                <h3 className={`${h3Class}`}>Kitchen</h3>
-                <p>
-                  Complete Kitchens from countertops to plumbing. You decide
-                  what you prefer. We will make it come true.
-                </p>
-                <p>
-                  <a className={`${aClass}`} href="" hidden>
-                    LEARN MORE
-                  </a>
-                </p>
-              </Div>
-            </Grid.Column>
-            <Grid.Column mobile={16} tablet={8} computer={5}>
-              <Div marginTop="50px">
-                <Image centered src="/static/design-2.jpg" />
-                <h3 className={`${h3Class}`}>Bathroom</h3>
-                <p>
-                  Big or Small any kitchen design is possible. From new
-                  construction to a complete remodel.
-                </p>
-                <p>
-                  <a className={`${aClass}`} href="" hidden>
-                    LEARN MORE
-                  </a>
-                </p>
-              </Div>
-            </Grid.Column>
-            <Grid.Column mobile={16} tablet={8} computer={5}>
-              <Div marginTop="50px">
-                <Image centered src="/static/design-3.jpg" />
-                <h3 className={`${h3Class}`}>Basements</h3>
-                <p>
-                  We specialize in complete Basement Remodeling. From Custom
-                  bars to Regular layouts. No Job is to big or small.
-                </p>
-                <p>
-                  <a className={`${aClass}`} href="" hidden>
-                    LEARN MORE
-                  </a>
-                </p>
-              </Div>
-            </Grid.Column>
-
-            <Grid.Column mobile={16} tablet={8} computer={5}>
-              <Div marginTop="50px">
-                <Image centered src="/static/design-4.jpg" />
-                <h3 className={`${h3Class}`}>Hardwood</h3>
-                <p>
-                  We Sell and install all wood. From Bamboo to Oak or Maple.
-                  Every sample is available.
-                </p>
-                <p>
-                  <a className={`${aClass}`} href="" hidden>
-                    LEARN MORE
-                  </a>
-                </p>
-              </Div>
-            </Grid.Column>
-            <Grid.Column mobile={16} tablet={8} computer={5}>
-              <Div marginTop="50px">
-                <Image centered src="/static/design-5.jpg" />
-                <h3 className={`${h3Class}`}>Floor</h3>
-                <p>Complete Floor installation. Every Material is available.</p>
-                <p>
-                  <a className={`${aClass}`} href="" hidden>
-                    LEARN MORE
-                  </a>
-                </p>
-              </Div>
-            </Grid.Column>
-            <Grid.Column mobile={16} tablet={8} computer={5}>
-              <Div marginTop="50px">
-                <Image centered src="/static/design-6.jpg" />
-                <h3 className={`${h3Class}`}>Carpet</h3>
-                <p>
-                  We Sell and Install carpet. Numerous Samples available. We
-                  also do carpet repairs and restrech.
-                </p>
-                <p>
-                  <a className={`${aClass}`} href="" hidden>
-                    LEARN MORE
-                  </a>
-                </p>
-              </Div>
-            </Grid.Column>
-
-            <Grid.Column mobile={16} tablet={8} computer={5}>
-              <Div marginTop="50px">
-                <Image centered src="/static/design-7.jpg" />
-                <h3 className={`${h3Class}`}>Tiles Sales & Installation</h3>
-                <p>Call for price, samples and install availability.</p>
-                <p>
-                  <a className={`${aClass}`} href="" hidden>
-                    LEARN MORE
-                  </a>
-                </p>
-              </Div>
-            </Grid.Column>
-            <Grid.Column mobile={16} tablet={8} computer={5}>
-              <Div marginTop="50px">
-                <Image centered src="/static/design-8.jpg" />
-                <h3 className={`${h3Class}`}>Concrete Repairs</h3>
-                <p>
-                  Concrete new or need a repair. Just give us a call to help.
-                </p>
-                <p>
-                  <a className={`${aClass}`} href="" hidden>
-                    LEARN MORE
-                  </a>
-                </p>
-              </Div>
-            </Grid.Column>
-            <Grid.Column mobile={16} tablet={8} computer={5}>
-              <Div marginTop="50px">
-                <Image centered src="/static/design-9.jpg" />
-                <h3 className={`${h3Class}`}>Structural Repairs</h3>
-                <p>
-                  Foundation Waterproofing. Injections. Underpinning. Helical
-                  Anchors. Carbon Fiber Reinforcement. Kevlar Reinforcement and
-                  much more. All Have warranty that is transferable !!!
-                </p>
-                <p>
-                  <a className={`${aClass}`} href="" hidden>
-                    LEARN MORE
-                  </a>
-                </p>
-              </Div>
-            </Grid.Column>
-          </Grid>
-        </Div>
-
-        <Div className={`${chooseGrid}`}>
-          <Grid container centered>
-            <Grid.Column
-              mobile={16}
-              tablet={12}
-              computer={10}
-              textAlign="center"
-            >
-              <H1 className={`${h1Class}`}>WHY CHOOSE US?</H1>
-              <P>
-                At Family First Restoration, we pride ourselves on customer
-                service. You, the customer, ALWAYS comes first. Our business
-                exists to help you.
-              </P>
-            </Grid.Column>
-          </Grid>
-          <Grid container centered>
-            <Grid.Row>
-              <Grid.Column
-                floated="left"
-                textAlign="center"
-                mobile={16}
-                tablet={4}
-                computer={4}
-              >
-                <Div className={`${spacer2}`} />
-                <Div margin="30px auto 0" maxWidth="300px">
-                  <Image centered src="/static/engineer.png" />
-                  <h3 className={`${h3Class}`}>Project Management</h3>
-                  <p>
-                    All projects are managed by top of the line industry
-                    professionals.
-                  </p>
-                </Div>
-              </Grid.Column>
-              <Grid.Column
-                floated="right"
-                textAlign="center"
-                mobile={16}
-                tablet={4}
-                computer={4}
-              >
-                <Div className={`${spacer2}`} />
-                <Div margin="30px auto 0" maxWidth="300px">
-                  <Image centered src="/static/tap.png" />
-                  <h3 className={`${h3Class}`}>The Kitchen Sink</h3>
-                  <p>
-                    Our unique background in restoration and our diverse
-                    toolsets help us to approach every project from the best
-                    angles possible.
-                  </p>
-                </Div>
-              </Grid.Column>
-            </Grid.Row>
-
-            <Grid.Row>
-              <Grid.Column
-                floated="left"
-                textAlign="center"
-                mobile={16}
-                tablet={4}
-                computer={4}
-              >
-                <Div className={`${spacer2}`} />
-                <Div margin="30px auto 0" maxWidth="300px">
-                  <Image centered src="/static/light-bulb.png" />
-                  <h3 className={`${h3Class}`}>Bright Ideas</h3>
-                  <p>
-                    Our team is trained to approach each project with utmost
-                    care &amp; knowledge.
-                  </p>
-                </Div>
-              </Grid.Column>
-              <Grid.Column
-                floated="right"
-                textAlign="center"
-                mobile={16}
-                tablet={4}
-                computer={4}
-              >
-                <Div className={`${spacer2}`} />
-                <Div margin="30px auto 0" maxWidth="300px">
-                  <Image centered src="/static/paint-roller.png" />
-                  <h3 className={`${h3Class}`}>Finishing</h3>
-                  <p>From A to Z, our projects are finished to inspire.</p>
-                </Div>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Div>
-
-        <Div backgroundColor={primaryColor} color="#fff">
-          <Grid container>
-            <Grid.Column textAlign="center" centered="true">
-              <Div padding="80px 0 70px">
-                <Text is="h1" f={[2, 1, 1]}>
-                  <Span fontFamily="'Oswald', sans-serif">
-                    {' '}
-                    Call Family First Construction Today!
-                  </Span>
-                </Text>
-                <Text is="h2" f={[3, 2, 2]}>
-                  <a className={`${aWhite}`} href="tel:+8472525126">
-                    (847) 252-5126
-                  </a>
-                </Text>
-              </Div>
-            </Grid.Column>
-          </Grid>
-        </Div>
-
-        <Div padding="100px 10px" backgroundColor="#f9f9f9">
-          <Grid centered>
-            <Div marginBottom="20px">
-              <H1 className={`${h1Class}`}>OUR ACCREDITATIONS</H1>
-            </Div>
-            <Grid.Row>
-              <Grid.Column textAlign="center" centered="true">
-                <Image.Group>
-                  <Image src="/static/otc-logo.png" className={`${imgLogo}`} />
-                  <Image src="/static/iri.png" className={`${imgLogo}`} />
-                  <Image src="/static/iicrc.png" className={`${imgLogo}`} />
-                  <Image src="/static/noa-logo.png" className={`${imgLogo}`} />
-                  <Image src="/static/fortress.png" className={`${imgLogo}`} />
-                  <Image src="/static/icri.png" className={`${imgLogo}`} />
-                </Image.Group>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Div>
-
-        <Div padding="100px 0" color="#686868" fontSize="16px">
-          <Grid container centered>
-            <Grid.Column
-              mobile={16}
-              tablet={14}
-              computer={10}
-              textAlign="center"
-            >
-              <H1 className={`${h1Class}`}>GALLERY</H1>
-              <P marginBottom="50px!important">
-                Just a few examples of our gallery to leave you feeling inspired
-                to start your next project.
-              </P>
-            </Grid.Column>
-          </Grid>
-
-          <Grid container centered>
-            <Grid.Column
-              mobile={16}
-              tablet={8}
-              computer={5}
-              verticalAlign="middle"
-              textAlign="center"
-            >
-              <Image centered src="/static/imagegen.jpg" />
-            </Grid.Column>
-            <Grid.Column
-              mobile={16}
-              tablet={8}
-              computer={5}
-              verticalAlign="middle"
-              textAlign="center"
-            >
-              <Image centered src="/static/construction.jpg" />
-            </Grid.Column>
-            <Grid.Column
-              mobile={16}
-              tablet={8}
-              computer={5}
-              verticalAlign="middle"
-              textAlign="center"
-            >
-              <a href="https://familyfirstrestoration.com/photos">
-                <Image centered src="/static/view-more.png" />
-              </a>
-            </Grid.Column>
-          </Grid>
-        </Div>
-
-        <Div backgroundColor="#1d273b" padding="100px 0">
-          <a href="https://familyfirstrestoration.com">
-            <Grid container centered>
-              <Grid.Column textAlign="center">
-                <Text is="h2" f={[4, null, 3, 2]}>
-                  <Span
-                    color="#fff"
-                    fontFamily="'Oswald', sans-serif"
-                    fontWeight="400"
-                  >
-                    Home damaged by fire, water, or mold?
-                  </Span>
-                </Text>
-                <Text is="h1" f={[3, null, 1, 1]}>
-                  <Span color="#fff" fontWeight="100">
-                    VISIT
-                  </Span>{' '}
-                  <Span
-                    color="#528bfc"
-                    fontFamily="'Oswald', sans-serif"
-                    fontWeight="700"
-                  >
-                    {' '}
-                    FAMILY FIRST RESTORATION.COM
-                  </Span>
-                </Text>
-                <P color="#fff" fontSize="16px">
-                  We are experts in water damage repair, mold removal, sewage
-                  clean up, and fire damage restoration.
-                </P>
-              </Grid.Column>
-            </Grid>
-          </a>
-        </Div>
 
         <Div className={`${footerClass}`}>
-          <Grid>
-            <Grid.Row only="computer">
-              <Grid.Column computer={7}>
-                <p>
-                  Family First Construction Copyright &copy; 2017. All Rights
-                  Reserved.
-                </p>
-              </Grid.Column>
-              <Grid.Column textAlign="left" computer={5}>
-                <p horizontal="true">
-                  <a href="https://armstead.io" className={`${aBlack}`}>
-                    Empowered by{' '}
-                    <Image src="/static/a-logo.png" width="20" spaced />{' '}
-                    Armstead Inc.
-                  </a>
-                </p>
-              </Grid.Column>
-              <Grid.Column textAlign="right" computer={4}>
-                <a
-                  href="https://www.facebook.com/Familyfirstrestoration"
-                  target="_blank"
-                >
-                  <Icon name="facebook" color="blue" size="large" />
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/martin-russo-6648b797"
-                  target="_blank"
-                >
-                  <Icon name="linkedin" color="blue" size="large" />
-                </a>
-              </Grid.Column>
-            </Grid.Row>
-
-            <Grid.Row only="mobile tablet">
-              <Grid.Column width="16" textAlign="center">
-                <p>
-                  Family First Construction Copyright &copy; 2017. All Rights
-                  Reserved.
-                </p>
-              </Grid.Column>
-              <Grid.Column width="16" textAlign="center">
-                <Div marginTop="10px">
-                  <p horizontal="true">
-                    <a href="https://armstead.io" className={`${aBlack}`}>
-                      Empowered by{' '}
-                      <Image src="/static/a-logo.png" width="20" spaced />{' '}
-                      Armstead Inc.
-                    </a>
-                  </p>
-                </Div>
-              </Grid.Column>
-              <Grid.Column width="16" textAlign="center">
-                <Div marginTop="5px">
-                  <a
-                    href="https://www.facebook.com/Familyfirstrestoration"
-                    target="_blank"
-                  >
-                    <Icon name="facebook" color="blue" size="large" />
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/in/martin-russo-6648b797"
-                    target="_blank"
-                  >
-                    <Icon name="linkedin" color="blue" size="large" />
-                  </a>
-                </Div>
-              </Grid.Column>
-            </Grid.Row>
+          <Grid container verticalAlign="middle">
+            <Grid.Column
+              mobile={16}
+              tablet={8}
+              computer={8}
+              verticalAlign="middle">
+              <h2>COMPANY NAME</h2>
+              <p>tagline content goes here.</p>
+              <br/>
+              <h2>Our branch</h2>
+              <p>Call US 888 8888</p>
+              <p>Email.Support@gmail.com</p>
+              <p>2st Blue Location ,City</p>
+              <p>7000</p>
+            </Grid.Column>
+            <Grid.Column
+              mobile={16}
+              tablet={8}
+              computer={8}
+              verticalAlign="middle">
+              <h2>Our IT branch</h2>
+              <p>Info@company.com</p>
+              <p>Location, 123 St. City, 2000</p>
+            </Grid.Column>
+          </Grid>
+          <Grid container verticalAlign="middle">
+            <Grid.Column>
+              <P fontSize="16px!important"> COPYRIGHT 2017 @COmpany All rights reserved. | Terms of Use | Privacy Policy</P>
+            </Grid.Column>
           </Grid>
         </Div>
       </Div>

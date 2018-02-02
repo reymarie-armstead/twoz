@@ -3,9 +3,7 @@
   "scripts": {
     "start": "node server.js",
     "build": "next build && next export",
-    "precommit": "lint-staged",
-    "deploy":
-      "yarn build && aws s3 cp out s3://family1stconstruction.com --recursive --acl public-read"
+    "precommit": "lint-staged"
   },
   "lint-staged": {
     "*.{js,json,css}": ["prettier --write", "git add"]
@@ -41,7 +39,7 @@
     "superagent": "^3.8.1",
     "universal-cookie": "^2.1.2"
   },
-  "name": "ProjectName",
+  "name": "Twoz",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",

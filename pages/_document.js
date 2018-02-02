@@ -28,7 +28,7 @@ export default class MyDocument extends Document {
           <title>Default Title</title>
           <link
             rel="stylesheet"
-            href="//fonts.googleapis.com/css?family=Poppins:300,400"
+            href="//fonts.googleapis.com/css?family=Montserrat:300,400,700"
           />
           <link
             rel="stylesheet"
