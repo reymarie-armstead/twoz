@@ -8,7 +8,7 @@ import Header from 'components/header'
 import Footer from 'components/footer'
 import Loader from 'components/page-loader'
 
-css.global('*', { fontFamily: `'Poppins', sans-serif` })
+css.global('*', { fontFamily: `'Montserrat', sans-serif` })
 
 const Default = ({
   children,

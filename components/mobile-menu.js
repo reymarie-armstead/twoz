@@ -1,11 +1,12 @@
 import { elastic as Menu } from 'react-burger-menu'
-import { Button } from 'glamorous'
+import { Button, Div } from 'glamorous'
 import { Router } from 'routes'
 import { login } from 'services/auth'
+import Link from 'next/link'
 
 const styles = {
   bmBurgerButton: {
-    position: 'fixed',
+    position: 'absolute',
     width: '36px',
     height: '30px',
     right: '15px',
@@ -50,6 +51,26 @@ export default ({ isAuthenticated }) => (
     right
     styles={styles}
   >
+    <Link href="/" prefetch>
+      <a>
+        <Div height="60px">ABOUT</Div>
+      </a>
+    </Link>
+    <Link href="/" prefetch>
+      <a>
+        <Div height="60px">CASE STUDY</Div>
+      </a>
+    </Link>
+    <Link href="/" prefetch>
+      <a>
+        <Div height="60px">SERVICE</Div>
+      </a>
+    </Link>
+    <Link href="/" prefetch>
+      <a>
+        <Div height="60px">CONTACT</Div>
+      </a>
+    </Link>
     {isAuthenticated ? (
       <Button
         onClick={() => Router.pushRoute('/logout')}
@@ -62,6 +83,7 @@ export default ({ isAuthenticated }) => (
       >
         LOGOUT
       </Button>
+
     ) : (
       [
         <Button

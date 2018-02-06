@@ -4,6 +4,7 @@ import Head from 'next/head'
 import connect from 'next-redux-wrapper'
 import { bindActionCreators } from 'redux'
 import { css } from 'glamor'
+import MobileMenu from 'components/mobile-menu'
 import {
   Item,
   Grid,
@@ -12,12 +13,9 @@ import {
   Icon,
   Menu,
   Button,
-  Table,
-  Responsive,
   Accordion
 } from 'semantic-ui-react'
 import { Div, H1, H2, P, Span } from 'glamorous'
-import { Text } from 'axs'
 import store from 'services/store'
 import { Router } from 'routes'
 
@@ -26,6 +24,11 @@ css.global('*', { fontFamily: `'Montserrat', sans-serif` })
 const primaryColor = '#ffb725'
 const secondaryColor = '#5c5cf7'
 
+const mobileMenuClass = css({
+  '@media(min-width: 768px)': {
+    display: 'none',
+  }
+})
 const divMenu = css({
   textAlign: 'center',
   background: 'linear-gradient(to left, rgba(255,255,255,.01) 0%, rgba(255,255,255,.8) 50%, rgba(255,255,255,.01) 100%)',
@@ -36,13 +39,15 @@ const divMenu = css({
 })
 const menuclass = css({
   '.ui': {
-    backgroundColor: 'transparent',
+    display: 'none',
     '@media(min-width: 768px)': {
+      backgroundColor: 'transparent',
       maxWidth: '590px',
       width: '100%!important',
       textAlign: 'center',
       margin: 'auto!important',
       border: '0',
+      display: 'flex',
     }
   }
 })
@@ -61,19 +66,10 @@ const wizardyImg = css({
     position: 'absolute!important',
     left: '50%',
     transform: 'translate(-50%, -65%)',
-})
-const logo = css({
-  width: '260px',
-  margin: '0 auto',
-  '@media(min-width: 768px)': {
-    width: '170px'
-  },
-  '@media(min-width: 1080px)': {
-    width: '260px'
-  }
-})
-const aBlack = css({
-  
+    width: '30vw',
+    '@media(min-width: 768px)': {
+      width: 'auto',
+    }
 })
 
 const h1Class = css({
@@ -95,37 +91,55 @@ const h3Class = css({
 const bannerGrid = css({
   '.ui': {
     margin: 'auto!important',
-    padding: '40px 0 40px',
+    padding: '40px 0 35vw',
     color: '#fff',
-    '@media(min-width: 500px)': {
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center bottom',
+    backgroundSize: 'contain',
+    backgroundImage: `url('/static/img/city-bg.png')`,
+    '@media(min-width: 768px)': {
       padding: '80px 0 320px',
-      backgroundRepeat: 'no-repeat',
-      backgroundPosition: 'center bottom',
-      backgroundSize: 'contain',
-      backgroundImage: `url('/static/img/city-bg.png')`
     },
     ' p':{
       textAlign: 'center',
       color: '#fff',
       maxWidth: '780px',
       margin: '0 auto 30px',
+    },
+    ' img':{
+      width: '35vw',
+      '@media(min-width: 768px)': {
+        width: '400px',
+      },
     }
   }
 })
 const service = css({
-  paddingTop: '200px',
+  paddingTop: '16vw',
   color: '#353535',
   fontSize: '16px',
+  '@media(min-width: 768px)': {
+    paddingTop: '200px',
+  },
   ' h1':{
     color: '#18a9de',
     marginBottom: '30px',
+  },
+  ' img':{
+    width: '30vw',
+      '@media(min-width: 620px)': {
+        width: '190px',
+    },
   }
 })
 
 const serviceGrid = css({
   '.ui': {
-    paddingTop: '100px',
+    paddingTop: '0px',
     paddingBottom: '50px',
+    '@media(min-width: 768px)': {
+    paddingTop: '100px',
+    },
   }
 })
 
@@ -210,10 +224,10 @@ const accordionStyle = css({
     fontSize: '20px',
     textAlign: 'left',
     ' .title':{
-        paddingLeft: '50px!important',
+        paddingLeft: '25px!important',
     },
     ' .content':{
-      paddingLeft: '50px!important',
+      paddingLeft: '40px!important',
     }
   }
 })
@@ -273,7 +287,8 @@ const getquote2 = css({
 
 const getquote = css({
   '.ui': {
-    width: '240px',
+    maxWidth: '240px',
+    width: '100%',
     height: '60px',
     fontSize: '16px',
     backgroundColor: primaryColor,
@@ -386,7 +401,7 @@ export default class Index extends Component {
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
   render() {
-    const { name, email, address, message, submitting, success, activeItem, activeIndex  } = this.state
+    const { name, email, address, message, submitting, success, activeItem, accessToken, activeIndex  } = this.state
 
     return [
       <Head key="head">
@@ -394,10 +409,12 @@ export default class Index extends Component {
       </Head>,
       <Div key="body">
         <Div backgroundImage="url('/static/img/header-bg.jpg')" backgroundSize="cover" backgroundPosition="center">
+          <Div className={`${mobileMenuClass}`}>
+            <MobileMenu isAuthenticated={accessToken}/>
+          </Div>
           <Div className={`${divMenu}`}>
             <Menu
               secondary
-              stackable
               className={`${menuclass}`}
             >
               <Menu.Item
